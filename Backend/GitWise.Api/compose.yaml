@@ -1,0 +1,7 @@
+﻿services:
+  gitwise:
+    image: gitwise
+    build:
+      context: .
+      dockerfile: Dockerfile
+
