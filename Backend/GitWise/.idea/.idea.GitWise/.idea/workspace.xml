@@ -10,7 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45932601-45f0-4293-add0-7d60a045b434" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../GitWise.Api/Controllers/ReposController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitWise.Api/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GitWise.Api/GitWise.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWise.Api/GitWise.Api.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GitWise/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GitWise/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gitwise.Domain/Class1.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gitwise.Domain/Gitwise.Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Gitwise.Domain/Gitwise.Domain.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +29,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../GitWise.Api/Controllers/ReposController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../GitWise.Api/Controllers/TestController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -143,7 +149,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1760551314267</updated>
-      <workItem from="1760551315661" duration="687000" />
+      <workItem from="1760551315661" duration="1408000" />
     </task>
     <servers />
   </component>
