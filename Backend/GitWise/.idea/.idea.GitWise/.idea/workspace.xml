@@ -5,27 +5,12 @@
     <projectFile profileName="http">GitWise.csproj</projectFile>
     <projectFile profileName="https">GitWise.csproj</projectFile>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="45932601-45f0-4293-add0-7d60a045b434" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/.idea/.idea.GitWise/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/.idea/.idea.GitWise/.idea/copilot.data.migration.agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/.idea/.idea.GitWise/.idea/copilot.data.migration.edit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/.idea/.idea.GitWise/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/.idea/.idea.GitWise/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/.idea/.idea.GitWise/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/Controllers/TestController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/GitWise.Api.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/GitWise.http" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/GitWise.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/Properties/launchSettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/compose.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../GitWise.Api/global.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GitWise/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWise.Api/GitWise.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWise.Api/GitWise.Api.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +26,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../GitWise.Api/Controllers/TestController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 6
 }]]></component>
@@ -157,13 +143,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1760551314267</updated>
-      <workItem from="1760551315661" duration="330000" />
+      <workItem from="1760551315661" duration="687000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
