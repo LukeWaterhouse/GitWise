@@ -7,4 +7,18 @@
         <RootNamespace>GitWise.Adapter.Github</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.10" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.10" />
+      <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.10" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Gitwise.Domain\Gitwise.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

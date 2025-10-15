@@ -1,8 +1,23 @@
+using GitWise.Adapter.Github.DependencyInjection;
+using Gitwise.Domain.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+var services = builder.Services;
+
+
+# region Dependecy Injection
+
+services.AddControllers();
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen();
+
+services
+    .AddDomainServices()
+    .AddGithubAdapterServices(builder.Configuration);
+    
+
+# endregion
 
 var app = builder.Build();
 

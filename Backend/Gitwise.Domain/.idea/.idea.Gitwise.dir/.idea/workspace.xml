@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="46797b0e-5cbd-484a-92a9-69df74264050" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../GitWise.Api/Controllers/RepositoryController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitWise.Api/Mapping/RepositoryMapper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitWise.Api/Models/RepositoryDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitWise.Infrastructure.Adapter.Github/Clients/GithubClient.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitWise.Infrastructure.Adapter.Github/DependencyInjection/GithubAdapterInjector.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitWise.Infrastructure.Adapter.Github/Interfaces/IGithubClient.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitWise.Infrastructure.Adapter.Github/Models/Commit/GithubCommit.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitWise.Infrastructure.Adapter.Github/Models/Commit/GithubCommitAuthor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitWise.Infrastructure.Adapter.Github/Models/Commit/GithubCommitDetail.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitWise.Infrastructure.Adapter.Github/Models/DetailedCommit/GithubDetailedCommit.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitWise.Infrastructure.Adapter.Github/Models/Repository/GithubRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GitWise.Infrastructure.Adapter.Github/Services/GithubRepositoryService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DependencyInjection/DomainInjector.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Interfaces/Domain/IRepositoryService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Interfaces/External/IExternalRepositoryService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/Repository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/RepositoryService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWise.Api/Controllers/ReposController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWise.Api/Controllers/TestController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWise.Api/GitWise.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWise.Api/GitWise.Api.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWise.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWise.Api/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWise.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../GitWise.Api/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWise.Infrastructure.Adapter.Github/Class1.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GitWise/.idea/.idea.GitWise/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gitwise.Application/Gitwise.Application.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gitwise.Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Gitwise.Domain.csproj" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="347dj1we12ZlTlrDymbr9DuvWDI" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="46797b0e-5cbd-484a-92a9-69df74264050" name="Changes" comment="" />
+      <created>1760568677348</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1760568677348</updated>
+      <workItem from="1760568678868" duration="4000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
