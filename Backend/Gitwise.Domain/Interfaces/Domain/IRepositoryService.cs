@@ -1,4 +1,5 @@
 using Gitwise.Domain.Models;
+using Gitwise.Domain.Models.Repositories;
 
 namespace Gitwise.Domain.Interfaces.Domain;
 

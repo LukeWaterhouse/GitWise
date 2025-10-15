@@ -1,6 +1,5 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitWise", "GitWise.csproj", "{F756863B-CAE5-4011-A926-45AA8785A425}"
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitWise.Api", "GitWise.Api\GitWise.Api.csproj", "{F756863B-CAE5-4011-A926-45AA8785A425}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4FB2A8EA-1411-4BC1-B979-30572B50C3F0}"
 	ProjectSection(SolutionItems) = preProject

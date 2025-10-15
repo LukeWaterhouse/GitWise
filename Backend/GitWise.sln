@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gitwise.Domain", "Gitwise.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitWise.Infrastructure.Adapter.Github", "GitWise.Infrastructure.Adapter.Github\GitWise.Infrastructure.Adapter.Github.csproj", "{D615A0CA-9883-42F9-888E-4956214B6863}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{7F924793-0C18-4442-93FB-9CD448B79905}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{81F6796F-1017-42FB-A822-6C8ABFA6F995}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{BF79D4EC-35CB-40BD-B064-AEF4B0D5D042}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +36,10 @@ Global
 		{D615A0CA-9883-42F9-888E-4956214B6863}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D615A0CA-9883-42F9-888E-4956214B6863}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D615A0CA-9883-42F9-888E-4956214B6863}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{077A6D53-7E3A-4B58-A22E-0506D3C3AB46} = {7F924793-0C18-4442-93FB-9CD448B79905}
+		{A9DCBC28-4626-4BD5-A511-5F04F62EAFB8} = {81F6796F-1017-42FB-A822-6C8ABFA6F995}
+		{D615A0CA-9883-42F9-888E-4956214B6863} = {BF79D4EC-35CB-40BD-B064-AEF4B0D5D042}
 	EndGlobalSection
 EndGlobal
