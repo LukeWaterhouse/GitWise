@@ -61,12 +61,14 @@
             "id": "a4e2b74124ed65da",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Design V1/Domain UMLs V1.md"
+                "file": "Design V1/Research.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "Domain UMLs V1"
+              "icon": "lucide-file",
+              "title": "Research"
             }
           }
         ],
@@ -221,11 +223,18 @@
   },
   "active": "a4e2b74124ed65da",
   "lastOpenFiles": [
+    "Design V1/GitWise Planning.md",
     "Design V1/Git Requests Diagram.md",
     "Design V1/Domain UMLs V1.md",
-    "Design V1/GitWise Planning.md",
+    "Design V1/Research.md",
+    "ImageResources/Pasted image 20251017210801.png",
+    "ImageResources/Pasted image 20251017210753.png",
+    "ImageResources/Pasted Image 20251017205745_769.png",
+    "ImageResources/Pasted Image 20251017115513_415.png",
+    "ImageResources",
+    "ImageResources/Pasted Image 20251017203905_328.png",
+    "ImageResources/Pasted Image 20251017203905_340.png",
     "GitWise Planning.canvas",
-    "Pasted Image 20251017115513_415.png",
     "Design V1",
     "Excalidraw/Untitled.canvas",
     "Excalidraw/Drawing 2025-10-17 10.40.28_0.excalidraw.md",
