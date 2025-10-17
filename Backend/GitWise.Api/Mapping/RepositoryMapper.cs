@@ -1,5 +1,4 @@
 using GitWise.Api.Models;
-using Gitwise.Domain.Models;
 using Gitwise.Domain.Models.Repositories;
 
 namespace GitWise.Api.Mapping;

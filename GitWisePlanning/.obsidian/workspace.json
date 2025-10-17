@@ -1,0 +1,264 @@
+{
+  "main": {
+    "id": "a498c6b9a1891d17",
+    "type": "split",
+    "children": [
+      {
+        "id": "f7f6861c8d4dae99",
+        "type": "tabs",
+        "dimension": 68.91408114558473,
+        "children": [
+          {
+            "id": "7143213dc348d131",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "GitWise Planning.canvas",
+                "viewState": {
+                  "x": 0,
+                  "y": 0,
+                  "zoom": 0
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "GitWise Planning"
+            }
+          },
+          {
+            "id": "c9d8cbb4204252db",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "GitWise Planning.canvas",
+                "viewState": {
+                  "x": 0,
+                  "y": 0,
+                  "zoom": 0
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "GitWise Planning"
+            }
+          },
+          {
+            "id": "9ca9f30220e0bd94",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Git Requests Diagram.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Git Requests Diagram"
+            }
+          },
+          {
+            "id": "6f620e635a401456",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Git Requests Diagram.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Git Requests Diagram"
+            }
+          },
+          {
+            "id": "a4e2b74124ed65da",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Domain UMLs V1.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Domain UMLs V1"
+            }
+          }
+        ],
+        "currentTab": 4
+      },
+      {
+        "id": "9bfa0d4c7997afa5",
+        "type": "tabs",
+        "dimension": 31.085918854415272,
+        "children": [
+          {
+            "id": "751ab07a5ad14aba",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Git Requests Diagram.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Git Requests Diagram"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "cee242eb2bf3dee9",
+    "type": "split",
+    "children": [
+      {
+        "id": "e01577541dceb97e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4119476db9d5fcb1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "579a460296c78a7d",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "e6d6c3b897c3f339",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "5ec49b215a276543",
+    "type": "split",
+    "children": [
+      {
+        "id": "a50654ecb1cf4ca1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "30263c7df2fb25a3",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Excalidraw/Domain UMLs V1.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Domain UMLs V1"
+            }
+          },
+          {
+            "id": "c77ede16ae5655a0",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Excalidraw/Domain UMLs V1.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Domain UMLs V1"
+            }
+          },
+          {
+            "id": "df69c9dafde0471c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "e34861087602730c",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Excalidraw/Domain UMLs V1.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Domain UMLs V1"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-excalidraw-plugin:New drawing": false
+    }
+  },
+  "active": "a4e2b74124ed65da",
+  "lastOpenFiles": [
+    "Excalidraw/Git Requests Diagram.md",
+    "Excalidraw/Domain UMLs V1.md",
+    "Excalidraw/Untitled.canvas",
+    "GitWise Planning.md",
+    "Pasted Image 20251017115513_415.png",
+    "GitWise Planning.canvas",
+    "Excalidraw/Drawing 2025-10-17 10.40.28_0.excalidraw.md",
+    "Excalidraw/Drawing 2025-10-17 10.40.28.excalidraw.md",
+    "Excalidraw",
+    "Untitled.base",
+    "2025-10-17.md"
+  ]
+}
