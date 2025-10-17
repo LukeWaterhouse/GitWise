@@ -1,0 +1,12 @@
+
+Introduction
+
+**GitWise** is an intelligent analytics tool designed to provide deep insights into engineering activity by analysing Git commits, diffs, and project metrics. It connects to GitHub (and potentially other version control platforms) to collect per-developer commit data, patch contents, pull requests, and repository statistics. Using a combination of embeddings, natural language models, and smart filtering, GitWise transforms raw commit information into meaningful summaries and metrics — showing what each developer worked on, the nature and impact of their changes, and overall team productivity trends.
+
+Unlike traditional velocity dashboards that rely solely on commit counts or lines of code, GitWise focuses on **semantic understanding** of changes: classifying commits by purpose (e.g., refactor, feature, fix, config) and generating readable AI summaries for each change. Over time, it can reveal patterns in contribution style, workload balance, and code ownership across teams — helping engineering leads make informed decisions, product teams understand where developer effort is going, and developers reflect on their own work.
+
+Beyond commits, GitWise also analyses **daily or time-bound developer activity**, providing concise AI-generated summaries of what each developer has accomplished over a given period — such as a single day, week, or sprint. This includes aggregated overviews of code changes, areas of focus, and collaboration patterns, all expressed in clear natural language.
+
+In addition, GitWise surfaces insights from **pull request discussions**, tracking outgoing and received comments to assess engagement, mentorship, and collaboration trends. These conversational insights are summarised alongside code activity to produce well-rounded overviews of developer behaviour and contribution — both **technical** (code, fixes, features) and **non-technical** (reviews, communication, teamwork).
+
+Ultimately, GitWise aims to serve as a holistic developer intelligence layer — capable of generating English summaries of work patterns, communication dynamics, and contribution quality — providing managers with richer context for performance reviews, and helping both technical and non-technical stakeholders understand what’s really happening within the engineering team.
