@@ -1,4 +1,4 @@
-using Gitwise.Domain.Models.Repositories;
+using Gitwise.Domain.Models;
 
 namespace Gitwise.Domain.Interfaces.External;
 

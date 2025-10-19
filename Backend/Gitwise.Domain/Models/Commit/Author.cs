@@ -1,5 +1,5 @@
 namespace Gitwise.Domain.Models.Commits;
 
-public record CommitAuthor(
+public record Author(
     string Name,
     string Email);

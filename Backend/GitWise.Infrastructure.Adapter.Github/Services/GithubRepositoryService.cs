@@ -1,6 +1,6 @@
 using GitWise.Adapter.Github.Interfaces;
 using Gitwise.Domain.Interfaces.External;
-using Gitwise.Domain.Models.Repositories;
+using Gitwise.Domain.Models;
 
 namespace GitWise.Adapter.Github.Services;
 

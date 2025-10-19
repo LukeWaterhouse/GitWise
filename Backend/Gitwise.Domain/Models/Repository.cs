@@ -1,4 +1,4 @@
-namespace Gitwise.Domain.Models.Repositories;
+namespace Gitwise.Domain.Models;
 
 public record Repository(
     string Name,

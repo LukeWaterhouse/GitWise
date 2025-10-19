@@ -1,6 +1,8 @@
 using System.Text.Json;
+using GitWise.Adapter.Github.Common.Constants;
 using GitWise.Adapter.Github.Interfaces;
 using GitWise.Adapter.Github.Models.Commit;
+using GitWise.Adapter.Github.Models.DetailedCommit;
 using GitWise.Adapter.Github.Models.Repository;
 using Microsoft.AspNetCore.WebUtilities;
 
@@ -15,32 +17,45 @@ public class GithubClient(HttpClient httpClient) : IGithubClient
     
     public async Task<List<GithubRepository>> GetOrganisationReposAsync(string organisationName, CancellationToken ct)
     {
-        var response = await GetGithubResponseAsync<List<GithubRepository>>($"orgs/{organisationName}/repos", ct);
+        var endpoint = string.Format(GithubEndpoints.GetRepositoriesTemplate, organisationName);
+        
+        var response = await GetGithubResponseAsync<List<GithubRepository>>(endpoint, ct);
         return response;
     }
 
-    public async Task<List<GithubCommit>> GetRepositoryCommitsAsync(
-        string organisationName, 
-        string repositoryName, 
-        string authorEmail, 
-        DateTime since,
-        DateTime until, 
+    public async Task<List<GithubCommit>> GetDailyCommitsAsync(
+        string organisationName,
+        string repositoryName,
+        string authorEmail,
+        DateTime date,
         CancellationToken ct)
     {
-        var baseUrl = $"repos/{organisationName}/{repositoryName}/commits";
+        var startOfDay = date.Date.ToUniversalTime();
+        var endOfDay = startOfDay.AddDays(1);
+        
         var queryParams = new Dictionary<string, string?>
         {
             ["author"] = authorEmail,
-            ["since"] = since.ToString("o"),
-            ["until"] = until.ToString("o")
+            ["since"] = startOfDay.ToString("o"),
+            ["until"] = endOfDay.ToString("o")
         };
-
-        var url = QueryHelpers.AddQueryString(baseUrl, queryParams);
-        var response = await GetGithubResponseAsync<List<GithubCommit>>(url, ct);
+        
+        var endpoint = string.Format(GithubEndpoints.GetCommitsTemplate, organisationName, repositoryName);
+        var endpointWithQueryParams = QueryHelpers.AddQueryString(endpoint, queryParams);
+        
+        var response = await GetGithubResponseAsync<List<GithubCommit>>(endpointWithQueryParams, ct);
 
         return response;
     }
-    
+
+    public async Task<GithubDetailedCommit> GetCommitDetailsAsync(string organisationName, string repositoryName, string commitSha, CancellationToken ct)
+    {
+        var baseUrl = string.Format(GithubEndpoints.GetCommitByShaTemplate, organisationName, repositoryName, commitSha);
+        
+        var response = await GetGithubResponseAsync<GithubDetailedCommit>(baseUrl, ct);
+        return response;
+    }
+
     private async Task<T> GetGithubResponseAsync<T>(string endpoint, CancellationToken ct)
     {
         var response = await httpClient.GetAsync(endpoint, ct);

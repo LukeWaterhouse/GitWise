@@ -1,6 +1,6 @@
 using Gitwise.Domain.Interfaces.Domain;
 using Gitwise.Domain.Interfaces.External;
-using Gitwise.Domain.Models.Repositories;
+using Gitwise.Domain.Models;
 
 namespace Gitwise.Domain.Services;
 

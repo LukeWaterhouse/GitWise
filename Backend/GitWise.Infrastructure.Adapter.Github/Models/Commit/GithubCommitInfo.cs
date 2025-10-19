@@ -1,5 +1,5 @@
 namespace GitWise.Adapter.Github.Models.Commit;
 
-public record GithubCommitDetail(
+public record GithubCommitInfo(
     GithubCommitAuthor Author,
     string Message );
