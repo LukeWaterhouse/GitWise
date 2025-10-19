@@ -2,7 +2,7 @@ using GitWise.Adapter.Github.Interfaces;
 using GitWise.Adapter.Github.Models.DetailedCommit;
 using Gitwise.Domain.Interfaces.External;
 using Gitwise.Domain.Models;
-using Gitwise.Domain.Models.Commits;
+using Gitwise.Domain.Models.Commit;
 
 namespace GitWise.Adapter.Github.Services;
 

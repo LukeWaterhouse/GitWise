@@ -1,5 +1,5 @@
 using Gitwise.Domain.Models;
-using Gitwise.Domain.Models.Commits;
+using Gitwise.Domain.Models.Commit;
 
 namespace Gitwise.Domain.Interfaces.External;
 
