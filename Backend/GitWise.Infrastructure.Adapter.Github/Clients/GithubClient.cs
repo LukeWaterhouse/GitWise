@@ -57,9 +57,12 @@ public class GithubClient(HttpClient httpClient) : IGithubClient
         return response;
     }
 
-    public Task<GithubBlob> GetBlobAsync(string blobSha, CancellationToken ct)
+    public async Task<GithubBlob> GetBlobAsync(string organisationName, string repositoryName, string blobSha, CancellationToken ct)
     {
-        throw new NotImplementedException();
+        var baseUrl = string.Format(GithubEndpoints.GetBlobByShaTemplate, organisationName, repositoryName, blobSha);
+        
+        var response = await GetGithubResponseAsync<GithubBlob>(baseUrl, ct);
+        return response;
     }
 
     private async Task<T> GetGithubResponseAsync<T>(string endpoint, CancellationToken ct)

@@ -6,10 +6,13 @@ namespace GitWise.Adapter.Github.Services;
 
 public class GithubFileSnapshotService(IGithubClient githubClient) : IExternalFileSnapshotService
 {
-    public Task<FileSnapshot> GetFileSnapshotAsync(string commitSha, CancellationToken ct)
+    public async Task<FileSnapshot> GetFileSnapshotAsync(
+        Commit associatedCommit, 
+        FileChange associatedFileChange, 
+        string fileSnapshotSha,
+        CancellationToken ct)
     {
-        
-        
-        throw new NotImplementedException();
+        var blob = await githubClient.GetBlobAsync(
+            associatedCommit.,
     }
 }

@@ -23,6 +23,8 @@ public interface IGithubClient
         CancellationToken ct);
     
     public Task<GithubBlob> GetBlobAsync(
-        string blobSha,
+        string organisationName,
+        string repositoryName,
+        string bloblobShabSha,
         CancellationToken ct);
 }

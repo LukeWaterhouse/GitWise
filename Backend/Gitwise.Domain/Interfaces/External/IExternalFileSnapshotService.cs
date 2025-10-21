@@ -4,5 +4,9 @@ namespace Gitwise.Domain.Interfaces.External;
 
 public interface IExternalFileSnapshotService
 {
-    public Task<FileSnapshot> GetFileSnapshotAsync(string commitSha, CancellationToken ct);
+    public Task<FileSnapshot> GetFileSnapshotAsync(
+        Commit associatedCommit, 
+        FileChange associatedFileChange,
+        string fileSnapshotSha, 
+        CancellationToken ct);
 }
