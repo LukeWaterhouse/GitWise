@@ -16,8 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="DependencyInjection\" />
-      <Folder Include="Middleware\" />
+      <Folder Include="Models\Responses\" />
     </ItemGroup>
 
     <ItemGroup>

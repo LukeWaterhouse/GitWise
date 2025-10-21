@@ -8,7 +8,7 @@ namespace GitWise.Api.Controllers;
 [Route("api/[controller]")]
 public class RepositoryController(IRepositoryService repositoryService) : ControllerBase
 {
-    [HttpGet]
+    [HttpGet("{organisationName}")]
     public async Task<IActionResult> GetReposAsync(string organisationName, CancellationToken ct)
     {
         var repos = await repositoryService.GetAllOrgRepositoriesAsync(organisationName, ct);

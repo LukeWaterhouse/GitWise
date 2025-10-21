@@ -1,4 +1,6 @@
 using GitWise.Adapter.Github.DependencyInjection;
+using GitWise.Api.DependencyInjection;
+using GitWise.Api.Middleware;
 using Gitwise.Domain.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,13 +15,19 @@ services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
 services
+    .AddApiServices()
     .AddDomainServices()
     .AddGithubAdapterServices(builder.Configuration);
-    
 
 # endregion
 
 var app = builder.Build();
+
+# region Middleware
+
+app.UseMiddleware<ExceptionMiddleware>();
+
+# endregion
 
 if (app.Environment.IsDevelopment())
 {

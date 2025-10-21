@@ -11,14 +11,14 @@ public class GithubCommitService(IGithubClient githubClient) : IExternalCommitSe
     public async Task<List<Commit>> GetCommitsAsync(
         string organisationName, 
         Repository repository, 
-        Author author,
+        string authorEmail,
         DateTime date,
         CancellationToken ct)
     {
         var commitList = await githubClient.GetDailyCommitsAsync(
             organisationName, 
             repository.Name, 
-            author.Email,
+            authorEmail,
             date,
             ct);
         
@@ -35,27 +35,20 @@ public class GithubCommitService(IGithubClient githubClient) : IExternalCommitSe
             detailedCommitList.Add(detailedCommit);
         }
 
-        var commits = new List<Commit>();
-
-        foreach (var detailedCommit in detailedCommitList)
-        {
-            var commit = new Commit(
-                detailedCommit.Sha,
-                repository,
-                author,
-                detailedCommit.Commit.Author.Date,
-                detailedCommit.Commit.Message,
-                new(detailedCommit.Stats.Total, detailedCommit.Stats.Additions, detailedCommit.Stats.Deletions),
-                detailedCommit.Files.Select(x => new FileChange(
-                    x.Sha,
-                    x.Filename,
-                    new ChangeStats(x.Changes, x.Additions, x.Deletions),
-                    x.Patch)
-                ).ToList());
-            
-            commits.Add(commit);
-        }
-
-        return commits;
+        return detailedCommitList.Select(detailedCommit => 
+            new Commit(
+                detailedCommit.Sha, 
+                repository, 
+                new Author(detailedCommit.Commit.Author.Name, detailedCommit.Commit.Author.Email ), 
+                detailedCommit.Commit.Author.Date, 
+                detailedCommit.Commit.Message, 
+                new(detailedCommit.Stats.Total, detailedCommit.Stats.Additions, detailedCommit.Stats.Deletions), 
+                detailedCommit.Files.Select(x => 
+                    new FileChange(
+                        x.Sha, 
+                        x.Filename, 
+                        new ChangeStats(x.Changes, x.Additions, x.Deletions), 
+                        x.Patch)).ToList())
+        ).ToList();
     }
 }
