@@ -1,5 +1,5 @@
 using GitWise.Api.Models.Commit;
-using Gitwise.Domain.Models.Commit;
+using Gitwise.Domain.Models;
 
 namespace GitWise.Api.Mapping;
 

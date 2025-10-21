@@ -1,3 +1,4 @@
+using GitWise.Adapter.Github.Models.Blob;
 using GitWise.Adapter.Github.Models.Commit;
 using GitWise.Adapter.Github.Models.DetailedCommit;
 using GitWise.Adapter.Github.Models.Repository;
@@ -19,5 +20,9 @@ public interface IGithubClient
         string organisationName,
         string repositoryName,
         string commitSha,
+        CancellationToken ct);
+    
+    public Task<GithubBlob> GetBlobAsync(
+        string blobSha,
         CancellationToken ct);
 }

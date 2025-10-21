@@ -1,4 +1,4 @@
-namespace Gitwise.Domain.Models.Commit;
+namespace Gitwise.Domain.Models;
 
 public record Commit(
     string Sha,

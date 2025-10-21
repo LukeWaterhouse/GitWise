@@ -1,6 +1,6 @@
 using Gitwise.Domain.Interfaces.Domain;
 using Gitwise.Domain.Interfaces.External;
-using Gitwise.Domain.Models.Commit;
+using Gitwise.Domain.Models;
 
 namespace Gitwise.Domain.Services;
 
@@ -8,7 +8,7 @@ public class CommitService(IExternalCommitService externalCommitService, IExtern
 {
     public async Task<Dictionary<string, List<Commit>>> GetAllRepoCommitsAsync(
         string organisationName, 
-        string authorEmail,
+        string userEmail,
         DateTime date, 
         CancellationToken ct)
     {
@@ -18,10 +18,14 @@ public class CommitService(IExternalCommitService externalCommitService, IExtern
         
         foreach (var repository in organisationRepositories)
         {
-            var commits = await externalCommitService.GetCommitsAsync(organisationName, repository, authorEmail, date, ct);
+            var commits = await externalCommitService.GetDailyCommitsAsync(organisationName, repository, userEmail, date, ct);
             commitsByRepository[repository.Name] = commits;
         }
         
-        return commitsByRepository;
+        var filteredCommits = 
+            commitsByRepository.Where(x => x.Value.Any())
+            .ToDictionary(x => x.Key, x => x.Value);
+        
+        return filteredCommits;
     }
 }

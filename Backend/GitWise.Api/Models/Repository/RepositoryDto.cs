@@ -1,4 +1,4 @@
-namespace GitWise.Api.Models;
+namespace GitWise.Api.Models.Repository;
 
 public record RepositoryDto(
     string Name,

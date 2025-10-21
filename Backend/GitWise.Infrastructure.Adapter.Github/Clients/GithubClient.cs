@@ -1,6 +1,7 @@
 using System.Text.Json;
 using GitWise.Adapter.Github.Common.Constants;
 using GitWise.Adapter.Github.Interfaces;
+using GitWise.Adapter.Github.Models.Blob;
 using GitWise.Adapter.Github.Models.Commit;
 using GitWise.Adapter.Github.Models.DetailedCommit;
 using GitWise.Adapter.Github.Models.Repository;
@@ -54,6 +55,11 @@ public class GithubClient(HttpClient httpClient) : IGithubClient
         
         var response = await GetGithubResponseAsync<GithubDetailedCommit>(baseUrl, ct);
         return response;
+    }
+
+    public Task<GithubBlob> GetBlobAsync(string blobSha, CancellationToken ct)
+    {
+        throw new NotImplementedException();
     }
 
     private async Task<T> GetGithubResponseAsync<T>(string endpoint, CancellationToken ct)

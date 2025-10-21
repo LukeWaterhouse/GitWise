@@ -1,3 +1,5 @@
+using GitWise.Api.Models.Repository;
+
 namespace GitWise.Api.Models.Commit;
 
 public record CommitDto(

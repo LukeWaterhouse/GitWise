@@ -2,13 +2,12 @@ using GitWise.Adapter.Github.Interfaces;
 using GitWise.Adapter.Github.Models.DetailedCommit;
 using Gitwise.Domain.Interfaces.External;
 using Gitwise.Domain.Models;
-using Gitwise.Domain.Models.Commit;
 
 namespace GitWise.Adapter.Github.Services;
 
 public class GithubCommitService(IGithubClient githubClient) : IExternalCommitService
 {
-    public async Task<List<Commit>> GetCommitsAsync(
+    public async Task<List<Commit>> GetDailyCommitsAsync(
         string organisationName, 
         Repository repository, 
         string authorEmail,
