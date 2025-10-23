@@ -5,32 +5,32 @@ using Gitwise.Domain.Models;
 namespace Gitwise.Domain.Services;
 
 public class CommitService(
-    IExternalCommitService externalCommitService, 
-    IExternalRepositoryService externalRepositoryService,
+    IExternalCommitService externalCommitService,
     IExternalOrganisationService externalOrganisationService) : ICommitService
 {
     public async Task<Dictionary<string, List<Commit>>> GetDailyRepoCommitsByUserAsync(
-        string organisationName, 
-        string userEmail,
+        string? organisationName,
+        string authorUsername,
         DateTime date,
         CancellationToken ct)
     {
-        var organisation = await externalOrganisationService.GetOrganisationByNameAsync(organisationName, ct);
+        Organisation organisation;
         
-        var organisationRepositories = await externalRepositoryService.GetAllOrganisationRepositoriesAsync(organisationName, ct);
-        
-        var commitsByRepository = new Dictionary<string, List<Commit>>();
-        
-        foreach (var repository in organisationRepositories)
+        if (string.IsNullOrEmpty(organisationName))
         {
-            var commits = await externalCommitService.GetDailyCommitsAsync(organisation, repository, userEmail, date, ct);
-            commitsByRepository[repository.Name] = commits;
+            organisation = new Organisation(authorUsername, "", "");
         }
-        
-        var filteredCommits = 
-            commitsByRepository.Where(x => x.Value.Any())
-            .ToDictionary(x => x.Key, x => x.Value);
-        
-        return filteredCommits;
+        else
+        {
+            organisation = await externalOrganisationService.GetOrganisationByNameAsync(organisationName, ct);
+        }
+
+        var commits = await externalCommitService.GetDailyCommitsAsync(organisation, authorUsername, date, ct);
+
+        var groupedCommits = commits
+            .GroupBy(commit => commit.Repository.Name)
+            .ToDictionary(g => g.Key, g => g.ToList());
+
+        return groupedCommits;
     }
 }

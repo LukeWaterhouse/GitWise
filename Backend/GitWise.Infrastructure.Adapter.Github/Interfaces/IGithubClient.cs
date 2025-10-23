@@ -14,8 +14,7 @@ public interface IGithubClient
     
     public Task<List<GithubCommit>> GetDailyCommitsAsync(
         string organisationName, 
-        string repositoryName, 
-        string authorEmail,
+        string authorUsername,
         DateTime date,
         CancellationToken ct);
     

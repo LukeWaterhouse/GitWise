@@ -14,7 +14,7 @@ public class CommitsController(ICommitService commitService) : ControllerBase
     {
         var repoCommits = await commitService.GetDailyRepoCommitsByUserAsync(
             request.OrganisationName,
-            request.AuthorEmail,
+            request.AuthorUsername,
             request.Date,
             ct);
         

@@ -6,8 +6,7 @@ public interface IExternalCommitService
 {
     public Task<List<Commit>> GetDailyCommitsAsync(
         Organisation organisation,
-        Repository repository, 
-        string authorEmail,
+        string authorUsername,
         DateTime date,
         CancellationToken ct);
 }

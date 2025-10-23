@@ -22,9 +22,12 @@ public static class GithubAdapterInjector
         {
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("MyApp", "1.0"));
-            client.DefaultRequestHeaders.Add("Accept", "application/json");
-            //client.DefaultRequestHeaders.Add("Authorization", $"Bearer {configuration["Github:BearerToken"]}");
-        });        
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var token = configuration["Github:BearerToken"];
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        });
+ 
         
         services.AddScoped<IExternalOrganisationService, GithubOrganisationService>();
         services.AddScoped<IExternalRepositoryService, GithubRepositoryService>();

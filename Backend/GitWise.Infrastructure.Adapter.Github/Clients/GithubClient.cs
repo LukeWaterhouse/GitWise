@@ -6,6 +6,7 @@ using GitWise.Adapter.Github.Models.Commit;
 using GitWise.Adapter.Github.Models.DetailedCommit;
 using GitWise.Adapter.Github.Models.Organisation;
 using GitWise.Adapter.Github.Models.Repository;
+using GitWise.Adapter.Github.Models.Search;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace GitWise.Adapter.Github.Clients;
@@ -35,29 +36,19 @@ public class GithubClient(HttpClient httpClient) : IGithubClient
 
     public async Task<List<GithubCommit>> GetDailyCommitsAsync(
         string organisationName,
-        string repositoryName,
-        string authorEmail,
+        string authorUsername,
         DateTime date,
         CancellationToken ct)
     {
-        var startOfDay = date.Date.ToUniversalTime();
-        var endOfDay = startOfDay.AddDays(1);
+        var dateString = date.ToString("yyyy-MM-dd");
+        var query = $"author:{authorUsername}+org:{organisationName}+committer-date:{dateString}";
+        var endpoint = $"/search/commits?q={query}";
         
-        var queryParams = new Dictionary<string, string?>
-        {
-            ["author"] = authorEmail,
-            ["since"] = startOfDay.ToString("o"),
-            ["until"] = endOfDay.ToString("o")
-        };
-        
-        var endpoint = string.Format(GithubEndpoints.GetCommitsTemplate, organisationName, repositoryName);
-        var endpointWithQueryParams = QueryHelpers.AddQueryString(endpoint, queryParams);
-        
-        var response = await GetGithubResponseAsync<List<GithubCommit>>(endpointWithQueryParams, ct);
+        var response = await GetGithubResponseAsync<GithubSearch<GithubCommit>>(endpoint, ct);
 
-        return response;
+        return response.Items;
     }
-
+    
     public async Task<GithubDetailedCommit> GetCommitDetailsAsync(string organisationName, string repositoryName, string commitSha, CancellationToken ct)
     {
         var baseUrl = string.Format(GithubEndpoints.GetCommitByShaTemplate, organisationName, repositoryName, commitSha);
@@ -74,9 +65,22 @@ public class GithubClient(HttpClient httpClient) : IGithubClient
         return response;
     }
 
-    private async Task<T> GetGithubResponseAsync<T>(string endpoint, CancellationToken ct)
+    private async Task<T> GetGithubResponseAsync<T>(string endpoint, CancellationToken ct, bool useSpecialSearchHeader = false)
     {
-        var response = await httpClient.GetAsync(endpoint, ct);
+        HttpResponseMessage response;
+
+        if (useSpecialSearchHeader)
+        {
+            using var request = new HttpRequestMessage(HttpMethod.Get, endpoint);
+            request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/vnd.github.cloak-preview+json"));
+            
+            response = await httpClient.SendAsync(request, ct);
+        }
+        else
+        {
+            response = await httpClient.GetAsync(endpoint, ct);
+        }
+
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsStringAsync(ct);
 
@@ -91,4 +95,5 @@ public class GithubClient(HttpClient httpClient) : IGithubClient
                 $"Failed to deserialize response from endpoint: {endpoint}", ex);
         }
     }
+
 }
