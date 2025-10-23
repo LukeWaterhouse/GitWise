@@ -9,3 +9,4 @@ public record Commit(
     string Message,
     ChangeStats TotalChanges,
     List<FileChange> FileChanges);
+    

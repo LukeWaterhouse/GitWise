@@ -54,7 +54,8 @@ public class GithubCommitService(IGithubClient githubClient) : IExternalCommitSe
                         x.Sha,
                         x.Filename,
                         new ChangeStats(x.Changes, x.Additions, x.Deletions),
-                        x.Patch)).ToList()
+                        x.Patch,
+                        null)).ToList()
             ));
         }
 
