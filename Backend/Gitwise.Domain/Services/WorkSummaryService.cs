@@ -12,13 +12,23 @@ public class WorkSummaryService(
     {
         var commitsByRepository = await commitService.GetDailyRepoCommitsByUserAsync(organisationName, userEmail, date, ct);
         
+        var firstFileChangeCommits = GetFirstFileChanges(commitsByRepository.Values.SelectMany(c => c).ToList());
+        
+        Dictionary<string, FileSnapshot> fileNameSnapshots = new();
+        
+        foreach (var fileChange in firstFileChangeCommits)
+        {
+            var fileSnapshot = await externalFileSnapshotService.GetFileSnapshotAsync(fileChange.Item2, fileChange.Item1, ct);
+            fileNameSnapshots[fileChange.Item1.FileName] = fileSnapshot;
+        }
+        
         return "work summary";
     }
     
-    private static List<FileChange> GetFirstFileChanges(List<Commit> commits)
+    private static List<(FileChange, Commit)> GetFirstFileChanges(List<Commit> commits)
     {
         var seenFileNames = new HashSet<string>();
-        var firstFileChanges = new List<FileChange>();
+        var firstFileChangeCommits = new List<(FileChange, Commit)>();
 
         foreach (var commit in commits)
         {
@@ -26,11 +36,11 @@ public class WorkSummaryService(
             {
                 if (seenFileNames.Add(fileChange.FileName))
                 {
-                    firstFileChanges.Add(fileChange);
+                    firstFileChangeCommits.Add((fileChange, commit));
                 }
             }
         }
 
-        return firstFileChanges;
+        return firstFileChangeCommits;
     }
 }
