@@ -26,6 +26,7 @@ public static class GithubAdapterInjector
             //client.DefaultRequestHeaders.Add("Authorization", $"Bearer {configuration["Github:BearerToken"]}");
         });        
         
+        services.AddScoped<IExternalOrganisationService, GithubOrganisationService>();
         services.AddScoped<IExternalRepositoryService, GithubRepositoryService>();
         services.AddScoped<IExternalCommitService, GithubCommitService>();
         

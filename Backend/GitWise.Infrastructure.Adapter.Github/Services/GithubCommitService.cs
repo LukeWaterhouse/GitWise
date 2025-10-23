@@ -8,14 +8,14 @@ namespace GitWise.Adapter.Github.Services;
 public class GithubCommitService(IGithubClient githubClient) : IExternalCommitService
 {
     public async Task<List<Commit>> GetDailyCommitsAsync(
-        string organisationName, 
+        Organisation organisation, 
         Repository repository, 
         string authorEmail,
         DateTime date,
         CancellationToken ct)
     {
         var commitList = await githubClient.GetDailyCommitsAsync(
-            organisationName, 
+            organisation.Name, 
             repository.Name, 
             authorEmail,
             date,
@@ -26,7 +26,7 @@ public class GithubCommitService(IGithubClient githubClient) : IExternalCommitSe
         foreach (var commit in commitList)
         {
             var detailedCommit = await githubClient.GetCommitDetailsAsync(
-                organisationName,
+                organisation.Name,
                 repository.Name,
                 commit.Sha,
                 ct);
@@ -36,7 +36,8 @@ public class GithubCommitService(IGithubClient githubClient) : IExternalCommitSe
 
         return detailedCommitList.Select(detailedCommit => 
             new Commit(
-                detailedCommit.Sha, 
+                detailedCommit.Sha,
+                organisation,
                 repository, 
                 new Author(detailedCommit.Commit.Author.Name, detailedCommit.Commit.Author.Email ), 
                 detailedCommit.Commit.Author.Date, 

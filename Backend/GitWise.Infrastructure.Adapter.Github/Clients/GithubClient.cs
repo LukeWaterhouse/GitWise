@@ -4,6 +4,7 @@ using GitWise.Adapter.Github.Interfaces;
 using GitWise.Adapter.Github.Models.Blob;
 using GitWise.Adapter.Github.Models.Commit;
 using GitWise.Adapter.Github.Models.DetailedCommit;
+using GitWise.Adapter.Github.Models.Organisation;
 using GitWise.Adapter.Github.Models.Repository;
 using Microsoft.AspNetCore.WebUtilities;
 
@@ -15,7 +16,15 @@ public class GithubClient(HttpClient httpClient) : IGithubClient
     {
         PropertyNameCaseInsensitive = true
     };
-    
+
+    public Task<GithubOrganisation> GetOrganisationAsync(string organisationName, CancellationToken ct)
+    {
+        var endpoint = string.Format(GithubEndpoints.GetOrganisationTemplate, organisationName);
+        
+        var response = GetGithubResponseAsync<GithubOrganisation>(endpoint, ct);
+        return response;
+    }
+
     public async Task<List<GithubRepository>> GetOrganisationReposAsync(string organisationName, CancellationToken ct)
     {
         var endpoint = string.Format(GithubEndpoints.GetRepositoriesTemplate, organisationName);

@@ -7,6 +7,5 @@ public interface IExternalFileSnapshotService
     public Task<FileSnapshot> GetFileSnapshotAsync(
         Commit associatedCommit, 
         FileChange associatedFileChange,
-        string fileSnapshotSha, 
         CancellationToken ct);
 }

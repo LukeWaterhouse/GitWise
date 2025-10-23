@@ -12,7 +12,7 @@ public class CommitsController(ICommitService commitService) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> GetCommitsAsync([FromBody] GetCommitsRequestDto request, CancellationToken ct)
     {
-        var repoCommits = await commitService.GetAllRepoCommitsAsync(
+        var repoCommits = await commitService.GetDailyRepoCommitsByUserAsync(
             request.OrganisationName,
             request.AuthorEmail,
             request.Date,
