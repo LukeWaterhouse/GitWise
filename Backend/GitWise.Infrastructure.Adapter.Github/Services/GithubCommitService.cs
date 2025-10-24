@@ -1,6 +1,5 @@
 using GitWise.Adapter.Github.Interfaces;
-using GitWise.Adapter.Github.Models.DetailedCommit;
-using Gitwise.Domain.Interfaces.External;
+using Gitwise.Domain.Interfaces.External.Git;
 using Gitwise.Domain.Models;
 
 namespace GitWise.Adapter.Github.Services;
@@ -19,17 +18,16 @@ public class GithubCommitService(IGithubClient githubClient) : IExternalCommitSe
             date,
             ct);
 
-        var detailedCommitList = new List<GithubDetailedCommit>();
-        foreach (var commit in commitList)
-        {
-            var detailedCommit = await githubClient.GetCommitDetailsAsync(
+        var fetchCommitDetailTasks = commitList
+            .Select(commit => githubClient.GetCommitDetailsAsync(
                 organisation.Name,
                 commit.Repository.Name,
                 commit.Sha,
-                ct);
-            detailedCommitList.Add(detailedCommit);
-        }
+                ct))
+            .ToList();
 
+        var detailedCommitList = (await Task.WhenAll(fetchCommitDetailTasks)).ToList();
+        
         var result = new List<Commit>();
         for (var i = 0; i < detailedCommitList.Count; i++)
         {

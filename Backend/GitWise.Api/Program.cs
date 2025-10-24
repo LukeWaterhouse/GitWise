@@ -2,6 +2,7 @@ using GitWise.Adapter.Github.DependencyInjection;
 using GitWise.Api.DependencyInjection;
 using GitWise.Api.Middleware;
 using Gitwise.Domain.DependencyInjection;
+using Gitwise.Infrastructure.Ai.Azure.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,8 @@ services.AddSwaggerGen();
 services
     .AddApiServices()
     .AddDomainServices()
-    .AddGithubAdapterServices(builder.Configuration);
+    .AddGithubAdapterServices(builder.Configuration)
+    .AddAzureAiServices(builder.Configuration);
 
 # endregion
 

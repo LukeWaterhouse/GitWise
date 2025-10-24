@@ -1,5 +1,5 @@
 using Gitwise.Domain.Interfaces.Domain;
-using Gitwise.Domain.Interfaces.External;
+using Gitwise.Domain.Interfaces.External.Git;
 using Gitwise.Domain.Models;
 
 namespace Gitwise.Domain.Services;

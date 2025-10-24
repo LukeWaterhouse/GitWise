@@ -22,6 +22,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Gitwise.Domain\Gitwise.Domain.csproj" />
       <ProjectReference Include="..\GitWise.Infrastructure.Adapter.Github\GitWise.Infrastructure.Adapter.Github.csproj" />
+      <ProjectReference Include="..\Gitwise.Infrastructure.Ai.Azure\Gitwise.Infrastructure.Ai.Azure.csproj" />
     </ItemGroup>
 
 </Project>

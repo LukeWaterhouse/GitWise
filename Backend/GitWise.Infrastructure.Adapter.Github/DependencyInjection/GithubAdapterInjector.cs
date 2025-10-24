@@ -2,7 +2,7 @@ using System.Net.Http.Headers;
 using GitWise.Adapter.Github.Clients;
 using GitWise.Adapter.Github.Interfaces;
 using GitWise.Adapter.Github.Services;
-using Gitwise.Domain.Interfaces.External;
+using Gitwise.Domain.Interfaces.External.Git;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,11 +27,11 @@ public static class GithubAdapterInjector
             var token = configuration["Github:BearerToken"];
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         });
- 
         
         services.AddScoped<IExternalOrganisationService, GithubOrganisationService>();
         services.AddScoped<IExternalRepositoryService, GithubRepositoryService>();
         services.AddScoped<IExternalCommitService, GithubCommitService>();
+        services.AddScoped<IExternalFileSnapshotService, GithubFileSnapshotService>();
         
         return services;
     }

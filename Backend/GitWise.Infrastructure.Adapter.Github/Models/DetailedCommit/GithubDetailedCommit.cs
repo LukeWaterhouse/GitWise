@@ -1,6 +1,5 @@
 using GitWise.Adapter.Github.Models.Commit;
 using GitWise.Adapter.Github.Models.File;
-using GitWise.Adapter.Github.Models.Repository;
 
 namespace GitWise.Adapter.Github.Models.DetailedCommit;
 

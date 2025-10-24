@@ -10,6 +10,7 @@ public static class DomainInjector
     {
         services.AddScoped<IRepositoryService, RepositoryService>();
         services.AddScoped<ICommitService, CommitService>();
+        services.AddScoped<IWorkSummaryService, WorkSummaryService>();
 
         return services;
     }

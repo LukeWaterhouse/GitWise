@@ -7,7 +7,6 @@ using GitWise.Adapter.Github.Models.DetailedCommit;
 using GitWise.Adapter.Github.Models.Organisation;
 using GitWise.Adapter.Github.Models.Repository;
 using GitWise.Adapter.Github.Models.Search;
-using Microsoft.AspNetCore.WebUtilities;
 
 namespace GitWise.Adapter.Github.Clients;
 

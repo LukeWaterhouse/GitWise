@@ -1,24 +1,30 @@
 using Gitwise.Domain.Interfaces.Domain;
-using Gitwise.Domain.Interfaces.External;
+using Gitwise.Domain.Interfaces.External.Ai;
+using Gitwise.Domain.Interfaces.External.Git;
 using Gitwise.Domain.Models;
 
 namespace Gitwise.Domain.Services;
 
 public class WorkSummaryService(
     ICommitService commitService,
-    IExternalFileSnapshotService externalFileSnapshotService) : IWorkSummaryService
+    IExternalFileSnapshotService externalFileSnapshotService,
+    IExternalAiSummaryService externalAiSummaryService) : IWorkSummaryService
 {
-    public async Task<string> GenerateDailyWorkSummaryAsync(string organisationName, string userEmail, DateTime date, CancellationToken ct)
+    public async Task<string> GenerateDailyWorkSummaryAsync(string organisationName, string authorUsername, DateTime date, CancellationToken ct)
     {
-        var commitsByRepository = await commitService.GetDailyRepoCommitsByUserAsync(organisationName, userEmail, date, ct);
+        //TODO: Review parallelism and performance here
+        
+        var commitsByRepository = await commitService.GetDailyRepoCommitsByUserAsync(organisationName, authorUsername, date, ct);
 
-        var tasks = commitsByRepository.Values.Select(PopulateFirstFileChanges).ToList();
+        var tasks = commitsByRepository.Values.Select(PopulateFirstFileChangeSnapshots).ToList();
         await Task.WhenAll(tasks);
         
-        return "work summary";
+        var workSummary = await externalAiSummaryService.GetAiGeneratedSummaryAsync(commitsByRepository, ct);
+        
+        return workSummary;
     }
     
-    private async Task PopulateFirstFileChanges(List<Commit> commits)
+    private async Task PopulateFirstFileChangeSnapshots(List<Commit> commits)
     {
         var seenFileNames = new HashSet<string>();
 

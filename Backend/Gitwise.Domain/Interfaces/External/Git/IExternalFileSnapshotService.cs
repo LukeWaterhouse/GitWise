@@ -1,6 +1,6 @@
 using Gitwise.Domain.Models;
 
-namespace Gitwise.Domain.Interfaces.External;
+namespace Gitwise.Domain.Interfaces.External.Git;
 
 public interface IExternalFileSnapshotService
 {
