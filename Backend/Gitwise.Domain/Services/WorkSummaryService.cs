@@ -10,7 +10,7 @@ public class WorkSummaryService(
     IExternalFileSnapshotService externalFileSnapshotService,
     IExternalAiSummaryService externalAiSummaryService) : IWorkSummaryService
 {
-    public async Task<string> GenerateDailyWorkSummaryAsync(string organisationName, string authorUsername, DateTime date, CancellationToken ct)
+    public async Task<string> GenerateDailyWorkSummaryAsync(string? organisationName, string authorUsername, DateTime date, CancellationToken ct)
     {
         //TODO: Review parallelism and performance here
         
@@ -27,20 +27,28 @@ public class WorkSummaryService(
     private async Task PopulateFirstFileChangeSnapshots(List<Commit> commits)
     {
         var seenFileNames = new HashSet<string>();
-
+        var tasks = new List<Task>();
+    
         foreach (var commit in commits)
         {
             foreach (var fileChange in commit.FileChanges)
             {
                 if (!seenFileNames.Add(fileChange.FileName)) continue;
-                
-                var fileSnapshot = await externalFileSnapshotService.GetFileSnapshotAsync(
-                    commit,
-                    fileChange ,
-                    CancellationToken.None);
-                    
-                fileChange.FileSnapshot = fileSnapshot;
+    
+                var task = Task.Run(async () =>
+                {
+                    var fileSnapshot = await externalFileSnapshotService.GetFileSnapshotAsync(
+                        commit,
+                        fileChange,
+                        CancellationToken.None);
+    
+                    fileChange.FileSnapshot = fileSnapshot;
+                });
+    
+                tasks.Add(task);
             }
         }
+    
+        await Task.WhenAll(tasks);
     }
 }

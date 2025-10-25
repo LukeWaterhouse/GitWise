@@ -11,8 +11,7 @@ public class AzureAiClient(ChatClient azureAiChatClient) : IAzureAiClient
     {
         List<ChatMessage> messages =
         [
-            new SystemChatMessage("You are a helpful assistant."),
-            new UserChatMessage("I am going to Paris, what should I see?")
+            new UserChatMessage(message)
         ];
 
         var response = await azureAiChatClient.CompleteChatAsync(messages, new(), ct);
