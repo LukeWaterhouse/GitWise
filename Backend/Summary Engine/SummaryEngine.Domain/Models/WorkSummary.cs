@@ -1,0 +1,1 @@
+namespace SummaryEngine.Domain.Models;

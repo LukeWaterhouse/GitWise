@@ -1,1 +1,0 @@
-namespace Gitwise.Domain.Models;
