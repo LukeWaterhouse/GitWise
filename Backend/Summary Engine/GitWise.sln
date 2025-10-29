@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gitwise.Infrastructure.Ai.Azure", "Gitwise.Infrastructure.Ai.Azure\Gitwise.Infrastructure.Ai.Azure.csproj", "{3F4DDBDF-54DE-49E0-9470-2B486B707088}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{CFA91443-EB83-40F9-A72F-92D4CE0A599E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureMessaging", "AzureMessaging", "{164F886B-AE38-49F2-8441-A535B2FB84D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
