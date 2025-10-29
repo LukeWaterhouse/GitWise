@@ -10,6 +10,6 @@ public class FileChange(
     public string FileSnapshotSha { get; } = fileSnapshotSha;
     public string FileName { get; } = fileName;
     public ChangeStats ChangeStats { get; } = changeStats;
-    public string ChangeDefinition { get; } = changeDefinition;
+    public string? ChangeDefinition { get; set; } = changeDefinition;
     public FileSnapshot? FileSnapshot { get; set; } = fileSnapshot;
 }

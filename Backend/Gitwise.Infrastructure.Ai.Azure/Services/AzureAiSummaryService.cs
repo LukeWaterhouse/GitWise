@@ -10,7 +10,6 @@ public class AzureAiSummaryService(IAzureAiClient azureAiClient) : IExternalAiSu
 {
     public async Task<string> GetAiGeneratedSummaryAsync(Dictionary<string, List<Commit>> repositoryCommits, CancellationToken ct)
     {
-        
         var repositoryAiPromptCommits = new Dictionary<string, List<AiPromptCommit>>();
         
         foreach (var (repositoryName, commits) in repositoryCommits)
@@ -28,31 +27,21 @@ public class AzureAiSummaryService(IAzureAiClient azureAiClient) : IExternalAiSu
                         commit.TotalChanges.Additions,
                         commit.TotalChanges.Deletions),
                     fileChange.ChangeDefinition,
-                    GetDecodedContent(fileChange.FileSnapshot))).ToList()
+                    fileChange.FileSnapshot?.DecodedContent)).ToList()
                 )).ToList();
 
             repositoryAiPromptCommits[repositoryName] = aiPromptCommits;
         }
         
-        var workSummaryPrompt = new AiWorkSummaryPrompt(AiQueries.SummarizeCommit, repositoryAiPromptCommits);
-        
+        var workSummaryPrompt = new AiWorkSummaryPrompt(AiQueries.SummarizeCommits, repositoryAiPromptCommits);
         var serializedPrompt = System.Text.Json.JsonSerializer.Serialize(workSummaryPrompt);
-
+        
+        if(serializedPrompt.Length > 200000)
+        {
+            throw new Exception($"The serialized AI prompt exceeds the maximum allowed length ({serializedPrompt.Length}):" + serializedPrompt);
+        }
         
         var response = await azureAiClient.GetMessageResponseAsync(serializedPrompt, ct);
         return response;
-    }
-    
-    private string? GetDecodedContent(FileSnapshot? fileSnapshot)
-    {
-        if (fileSnapshot == null || fileSnapshot.Size > 4000)
-        {
-            return null;
-        }
-        
-        var base64EncodedBytes = Convert.FromBase64String(fileSnapshot.EncodedContent);
-        
-        
-        return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
     }
 }

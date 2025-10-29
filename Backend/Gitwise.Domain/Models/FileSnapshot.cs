@@ -7,4 +7,5 @@ public record FileSnapshot(
     Commit AssociatedCommit,
     int Size,
     string EncodedContent,
+    string? DecodedContent,
     EncodingType EncodingType);

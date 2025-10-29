@@ -28,6 +28,13 @@ public class GithubFileSnapshotService(IGithubClient githubClient) : IExternalFi
             associatedCommit,
             blob.Size,
             blob.Content,
+            GetDecodedContent(blob.Content),
             encodingType); 
+    }
+    
+    private static string? GetDecodedContent(string encodedContent)
+    {
+        var base64EncodedBytes = Convert.FromBase64String(encodedContent);
+        return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
     }
 }

@@ -8,7 +8,8 @@ namespace Gitwise.Domain.Services;
 public class WorkSummaryService(
     ICommitService commitService,
     IExternalFileSnapshotService externalFileSnapshotService,
-    IExternalAiSummaryService externalAiSummaryService) : IWorkSummaryService
+    IExternalAiSummaryService externalAiSummaryService,
+    IFileChangeFilterService fileChangeFilterService) : IWorkSummaryService
 {
     public async Task<string> GenerateDailyWorkSummaryAsync(string? organisationName, string authorUsername, DateTime date, CancellationToken ct)
     {
@@ -18,8 +19,11 @@ public class WorkSummaryService(
 
         var tasks = commitsByRepository.Values.Select(PopulateFirstFileChangeSnapshots).ToList();
         await Task.WhenAll(tasks);
+
+        var filteredCommitsByRepository =
+            fileChangeFilterService.FilterFileChangesForSummarization(commitsByRepository);
         
-        var workSummary = await externalAiSummaryService.GetAiGeneratedSummaryAsync(commitsByRepository, ct);
+        var workSummary = await externalAiSummaryService.GetAiGeneratedSummaryAsync(filteredCommitsByRepository, ct);
         
         return workSummary;
     }
@@ -41,7 +45,7 @@ public class WorkSummaryService(
                         commit,
                         fileChange,
                         CancellationToken.None);
-    
+                    
                     fileChange.FileSnapshot = fileSnapshot;
                 });
     
