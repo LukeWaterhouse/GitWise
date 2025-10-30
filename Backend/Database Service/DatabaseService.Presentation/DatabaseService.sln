@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseService", "DatabaseService.csproj", "{3533FA8C-2703-415C-B101-1B2B9E35A1DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C873E75E-016A-4D2D-B476-7A34956C1BB1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{EFFA75F9-0E6B-41CB-985E-66A56951E30F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{52B1E3E9-3876-464A-B692-13D129C90E6A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3533FA8C-2703-415C-B101-1B2B9E35A1DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3533FA8C-2703-415C-B101-1B2B9E35A1DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3533FA8C-2703-415C-B101-1B2B9E35A1DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3533FA8C-2703-415C-B101-1B2B9E35A1DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
