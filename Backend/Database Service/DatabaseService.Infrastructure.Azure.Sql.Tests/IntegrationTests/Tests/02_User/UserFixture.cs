@@ -1,16 +1,19 @@
 using DatabaseService.Infrastructure.Azure.Sql.EfCore;
 using DatabaseService.Infrastructure.Azure.Sql.IntegrationTests.IntegrationTests.Common.Constants;
+using DatabaseService.Infrastructure.Azure.Sql.IntegrationTests.IntegrationTests.Common.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace DatabaseService.Infrastructure.Azure.Sql.IntegrationTests.IntegrationTests.Tests._01_Tenant;
+namespace DatabaseService.Infrastructure.Azure.Sql.IntegrationTests.IntegrationTests.Tests._02_User;
 
-public class TenantFixture : IDisposable
+public class UserFixture : IDisposable
 {
     public Services.DbTenantUserService DbTenantUserService { get; private set; }
     public PooledDbContextFactory<GitwiseContext> ContextFactory { get; private set; }
     
-    public TenantFixture()
+    public readonly string ExistingTenantName = "UserFixtureTestTenant";
+    
+    public UserFixture()
     {
         var options = new DbContextOptionsBuilder<GitwiseContext>()
             .UseSqlServer(ConnectionStrings.TestDbConnectionString)
@@ -22,6 +25,8 @@ public class TenantFixture : IDisposable
         var context = ContextFactory.CreateDbContext();
         context.Database.EnsureDeletedAsync().Wait();
         context.Database.EnsureCreatedAsync().Wait();
+
+        TestHelpers.CreateTenantAsync(ExistingTenantName, context).Wait();
     }
     
     public void Dispose()

@@ -8,8 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="IntegrationTests\Common\Helpers\" />
-      <Folder Include="IntegrationTests\Tests\" />
       <Folder Include="Tests\" />
     </ItemGroup>
 

@@ -15,7 +15,7 @@ public static class AzureSqlInjector
         services.AddDbContextFactory<GitwiseContext>(
             options => options.UseSqlServer(sqlConnectionString));
         
-        services.AddScoped<IDatabaseService, Services.DatabaseService>();
+        services.AddScoped<IDbTenantUserService, Services.DbTenantUserService>();
         
         return services;
     }

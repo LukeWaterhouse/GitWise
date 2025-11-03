@@ -1,3 +1,4 @@
+using DatabaseService.Infrastructure.Azure.Sql.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using Shouldly;
 using Xunit;
@@ -8,7 +9,6 @@ namespace DatabaseService.Infrastructure.Azure.Sql.IntegrationTests.IntegrationT
 [Collection("Tenant Collection"), Order(1)]
 public class TenantTests(TenantFixture fixture)
 {
-    
     [Fact, Order(1)]
     public async Task CreateTenant_ValidScenario_ShouldSucceed()
     {
@@ -16,30 +16,41 @@ public class TenantTests(TenantFixture fixture)
         var tenantName = "TestTenant";
         
         // Act
-        var result = await fixture.DatabaseService.CreateTenantIfNotExistsAsync(tenantName);
+        await fixture.DbTenantUserService.CreateTenantIfNotExistsAsync(tenantName);
         
         // Assert
         var context = await fixture.ContextFactory.CreateDbContextAsync();
         
-        result.ShouldBe(true);
         var tenantExists = await context.Tenants.AnyAsync(t => t.Name == tenantName);
         tenantExists.ShouldBe(true);
     }
     
     [Fact, Order(2)]
-    public async Task CreateTenant_AlreadyExists_ShouldFail()
+    public async Task CreateTenant_AlreadyExists_ShouldThrowException()
     {
         // Arrange
         const string tenantName = "TestTenant";
-        
+    
         // Act
-        var result = await fixture.DatabaseService.CreateTenantIfNotExistsAsync(tenantName);
-        
+        DuplicateRecordException? ex = null;
+        try
+        {
+            await fixture.DbTenantUserService.CreateTenantIfNotExistsAsync(tenantName);
+        }
+        catch (DuplicateRecordException e)
+        {
+            ex = e;
+        }
+
         // Assert
+        ex.ShouldNotBeNull();
+        ex.ShouldBeOfType<DuplicateRecordException>();
+        ex.Message.ShouldBe("Tenant with value 'TestTenant' already exists.");
+
         var context = await fixture.ContextFactory.CreateDbContextAsync();
-        
-        result.ShouldBe(false);
         var tenantExists = await context.Tenants.AnyAsync(t => t.Name == tenantName);
         tenantExists.ShouldBe(true);
     }
+
+
 }
