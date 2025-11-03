@@ -1,11 +1,22 @@
+using DatabaseService.Infrastructure.Azure.Sql.DependencyInjection;
+using DatabaseService.Infrastructure.Azure.Sql.EfCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+var services = builder.Services;
+
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen();
+builder.Services.AddAzureSqlServices(builder.Configuration);
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var serviceProvider = scope.ServiceProvider;
+    var context = serviceProvider.GetRequiredService<GitwiseContext>();
+    context.Database.EnsureCreated();
+}
 
 if (app.Environment.IsDevelopment())
 {
@@ -14,5 +25,4 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.Run();

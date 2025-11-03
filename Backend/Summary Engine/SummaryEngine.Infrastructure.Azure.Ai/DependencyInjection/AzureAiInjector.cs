@@ -4,11 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OpenAI.Chat;
 using SummaryEngine.Domain.Interfaces.External.Ai;
-using SummaryEngine.Infrastructure.Ai.Azure.Clients;
-using SummaryEngine.Infrastructure.Ai.Azure.Interfaces;
-using SummaryEngine.Infrastructure.Ai.Azure.Services;
+using SummaryEngine.Infrastructure.Azure.Ai.Clients;
+using SummaryEngine.Infrastructure.Azure.Ai.Interfaces;
+using SummaryEngine.Infrastructure.Azure.Ai.Services;
 
-namespace SummaryEngine.Infrastructure.Ai.Azure.DependencyInjection;
+namespace SummaryEngine.Infrastructure.Azure.Ai.DependencyInjection;
 
 public static class AzureAiInjector
 {

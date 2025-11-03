@@ -1,10 +1,10 @@
 using SummaryEngine.Domain.Interfaces.External.Ai;
 using SummaryEngine.Domain.Models;
-using SummaryEngine.Infrastructure.Ai.Azure.Interfaces;
-using SummaryEngine.Infrastructure.Ai.Azure.Models.AiPrompts;
-using SummaryEngine.Infrastructure.Ai.Azure.Models.AiPrompts.Commit;
+using SummaryEngine.Infrastructure.Azure.Ai.Interfaces;
+using SummaryEngine.Infrastructure.Azure.Ai.Models.AiPrompts;
+using SummaryEngine.Infrastructure.Azure.Ai.Models.AiPrompts.Commit;
 
-namespace SummaryEngine.Infrastructure.Ai.Azure.Services;
+namespace SummaryEngine.Infrastructure.Azure.Ai.Services;
 
 public class AzureAiSummaryService(IAzureAiClient azureAiClient) : IExternalAiSummaryService
 {

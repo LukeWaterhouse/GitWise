@@ -1,6 +1,6 @@
 using SummaryEngine.Adapter.Github.DependencyInjection;
 using SummaryEngine.Domain.DependencyInjection;
-using SummaryEngine.Infrastructure.Ai.Azure.DependencyInjection;
+using SummaryEngine.Infrastructure.Azure.Ai.DependencyInjection;
 using SummaryEngine.Presentation.DependencyInjection;
 using SummaryEngine.Presentation.MessageQueue.Handlers;
 using SummaryEngine.Presentation.Middleware;

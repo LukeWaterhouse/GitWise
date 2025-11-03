@@ -1,6 +1,6 @@
-using SummaryEngine.Infrastructure.Ai.Azure.Models.AiPrompts.Commit;
+using SummaryEngine.Infrastructure.Azure.Ai.Models.AiPrompts.Commit;
 
-namespace SummaryEngine.Infrastructure.Ai.Azure.Models.AiPrompts;
+namespace SummaryEngine.Infrastructure.Azure.Ai.Models.AiPrompts;
 
 public record AiWorkSummaryPrompt(
     string Query,

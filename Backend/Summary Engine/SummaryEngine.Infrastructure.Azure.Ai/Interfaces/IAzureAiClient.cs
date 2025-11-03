@@ -1,4 +1,4 @@
-namespace SummaryEngine.Infrastructure.Ai.Azure.Interfaces;
+namespace SummaryEngine.Infrastructure.Azure.Ai.Interfaces;
 
 public interface IAzureAiClient
 {

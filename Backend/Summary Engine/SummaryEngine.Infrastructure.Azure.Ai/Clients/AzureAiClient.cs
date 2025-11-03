@@ -1,8 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using OpenAI.Chat;
-using SummaryEngine.Infrastructure.Ai.Azure.Interfaces;
+using SummaryEngine.Infrastructure.Azure.Ai.Interfaces;
 
-namespace SummaryEngine.Infrastructure.Ai.Azure.Clients;
+namespace SummaryEngine.Infrastructure.Azure.Ai.Clients;
 
 [ExcludeFromCodeCoverage(Justification = "Dependency has no way to be mocked, so this class is not unit testable. Keep logic minimal.")]
 public class AzureAiClient(ChatClient azureAiChatClient) : IAzureAiClient

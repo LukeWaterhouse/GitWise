@@ -15,5 +15,4 @@ public static class DomainInjector
 
         return services;
     }
-    
 }

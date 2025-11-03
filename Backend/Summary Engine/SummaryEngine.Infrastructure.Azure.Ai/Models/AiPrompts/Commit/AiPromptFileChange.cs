@@ -1,4 +1,4 @@
-namespace SummaryEngine.Infrastructure.Ai.Azure.Models.AiPrompts.Commit;
+namespace SummaryEngine.Infrastructure.Azure.Ai.Models.AiPrompts.Commit;
 
 public record AiPromptFileChange(
     string FileName,

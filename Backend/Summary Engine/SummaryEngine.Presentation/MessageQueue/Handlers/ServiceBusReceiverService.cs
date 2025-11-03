@@ -1,5 +1,4 @@
 using Azure.Messaging.ServiceBus;
-using Microsoft.Extensions.Configuration;
 
 namespace SummaryEngine.Presentation.MessageQueue.Handlers;
 

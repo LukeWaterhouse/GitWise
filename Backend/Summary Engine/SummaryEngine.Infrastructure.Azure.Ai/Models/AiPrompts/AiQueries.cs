@@ -1,4 +1,4 @@
-namespace SummaryEngine.Infrastructure.Ai.Azure.Models.AiPrompts;
+namespace SummaryEngine.Infrastructure.Azure.Ai.Models.AiPrompts;
 
 public static class AiQueries
 {
