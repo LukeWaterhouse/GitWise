@@ -11,12 +11,12 @@
             "id": "c9d8cbb4204252db",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "image",
               "state": {
-                "file": "Design V2/Architecture.md"
+                "file": "ImageResources/Pasted image 20251017210753.png"
               },
-              "icon": "excalidraw-icon",
-              "title": "Architecture"
+              "icon": "lucide-image",
+              "title": "Pasted image 20251017210753"
             }
           },
           {
@@ -64,8 +64,21 @@
               "icon": "lucide-git-fork",
               "title": "Graph view"
             }
+          },
+          {
+            "id": "d65f93af7cc64872",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.10.6"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.10.6"
+            }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -214,9 +227,13 @@
       "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "c9d8cbb4204252db",
+  "active": "d65f93af7cc64872",
   "lastOpenFiles": [
     "Design V2/Architecture.md",
+    "ImageResources/Pasted image 20251017210753.png",
+    "Design V2/Identity.md",
+    "Pasted image 20251104140656.png",
+    "Pasted image 20251104140553.png",
     "Design V1/GitWise Planning.md",
     "Design V1/Research.md",
     "Design V1/Git Requests Diagram.md",
@@ -228,7 +245,6 @@
     "Excalidraw",
     "Untitled.md",
     "ImageResources/Pasted image 20251017210801.png",
-    "ImageResources/Pasted image 20251017210753.png",
     "ImageResources/Pasted Image 20251017205745_769.png",
     "ImageResources/Pasted Image 20251017115513_415.png",
     "ImageResources",

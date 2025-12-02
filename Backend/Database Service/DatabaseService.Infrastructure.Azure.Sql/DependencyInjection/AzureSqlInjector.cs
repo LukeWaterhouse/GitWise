@@ -16,6 +16,8 @@ public static class AzureSqlInjector
             options => options.UseSqlServer(sqlConnectionString));
         
         services.AddScoped<IDbTenantUserService, Services.DbTenantUserService>();
+        services.AddScoped<IDbDeveloperService, Services.DbDeveloperService>();
+        services.AddScoped<IDbWorkSummaryService, Services.DbWorkSummaryService>();
         
         return services;
     }
