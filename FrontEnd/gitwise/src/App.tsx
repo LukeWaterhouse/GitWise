@@ -7,44 +7,28 @@ import {
 } from "@azure/msal-react";
 import { IPublicClientApplication } from "@azure/msal-browser";
 
-import { Container, Button } from "react-bootstrap";
 import { PageLayout } from "./Components/PageLayout";
-import { IdTokenData } from "./Components/DataDisplay";
-import { loginRequest } from "./Auth/AuthConfig";
 
 import "./Styles/App.css";
 
+import LandingPage from "./Pages/OverviewPage";
+import SignInPage from "./Pages/SignInPage";
+import SettingsPage from "./Pages/SettingsPage";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+
+
 const MainContent: React.FC = () => {
-    const { instance } = useMsal();
-    const activeAccount = instance.getActiveAccount();
-
-    const handleRedirect = () => {
-        instance
-            .loginRedirect({
-                ...loginRequest,
-                prompt: "create",
-            })
-            .catch((error) => console.log(error));
-    };
-
     return (
         <div className="App">
             <AuthenticatedTemplate>
-                {activeAccount && (
-                    <Container>
-                        <IdTokenData idTokenClaims={activeAccount.idTokenClaims as Record<string, unknown>} />
-                    </Container>
-                )}
+                <Routes>
+                    <Route path="/" element={<LandingPage />} />
+                    <Route path="/settings/*" element={<SettingsPage />} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
             </AuthenticatedTemplate>
-
             <UnauthenticatedTemplate>
-                <Button
-                    className="signInButton"
-                    onClick={handleRedirect}
-                    variant="primary"
-                >
-                    Sign up
-                </Button>
+                <SignInPage />
             </UnauthenticatedTemplate>
         </div>
     );
@@ -54,12 +38,15 @@ interface AppProps {
     instance: IPublicClientApplication;
 }
 
+
 const App: React.FC<AppProps> = ({ instance }) => {
     return (
         <MsalProvider instance={instance}>
-            <PageLayout>
-                <MainContent />
-            </PageLayout>
+            <Router>
+                <PageLayout>
+                    <MainContent />
+                </PageLayout>
+            </Router>
         </MsalProvider>
     );
 };

@@ -27,10 +27,10 @@ public class CommitService(
 
         var commits = await externalCommitService.GetDailyCommitsAsync(organisation, authorUsername, date, ct);
 
-        var groupedCommits = commits
+        var repositoryCommits = commits
             .GroupBy(commit => commit.Repository.Name)
             .ToDictionary(g => g.Key, g => g.ToList());
 
-        return groupedCommits;
+        return repositoryCommits;
     }
 }

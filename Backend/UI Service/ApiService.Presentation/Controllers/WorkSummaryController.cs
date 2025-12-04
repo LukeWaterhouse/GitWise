@@ -12,4 +12,12 @@ public class WorkSummaryController : ControllerBase
     {
         return Ok();
     }
+
+    [HttpGet("{organisationName}/{authorUsername}/{date}")]
+    public async Task<IActionResult> GetWorkSummaryAsync(string organisationName, string authorUsername, DateOnly date,
+        CancellationToken ct)
+    {
+        await Task.Delay(10, ct);
+        return Ok("Here is the work summary");
+    }
 }

@@ -2,7 +2,7 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from '@azure/
 import { Navbar, Button } from 'react-bootstrap';
 import { loginRequest } from '../Auth/AuthConfig';
 
-export const NavigationBar = () => {
+export const SignInTopNavBar = () => {
     const { instance } = useMsal();
     
     const handleLoginRedirect = () => {
@@ -22,7 +22,7 @@ export const NavigationBar = () => {
         <>
             <Navbar bg="primary" variant="dark" className="navbarStyle">
                 <a className="navbar-brand" href="/">
-                    Microsoft identity platform
+                    Gitwise
                 </a>
                 <AuthenticatedTemplate>
                     <div className="collapse navbar-collapse justify-content-end">

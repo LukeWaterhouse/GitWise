@@ -1,7 +1,8 @@
 import React, { ReactNode } from "react";
 import { AuthenticatedTemplate } from "@azure/msal-react";
 
-import { NavigationBar } from "./NavigationBar";
+import { SignInTopNavBar } from "./SignInTopNavBar";
+import SidebarNav from "./SideNavBar";
 
 interface PageLayoutProps {
     children?: ReactNode;
@@ -10,29 +11,21 @@ interface PageLayoutProps {
 export const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
     return (
         <>
-            <NavigationBar />
-            <br />
-            <h5>
-                <center>Welcome to the Microsoft Authentication Library For React Tutorial</center>
-            </h5>
-            <br />
-            {children}
-            <br />
+            <SignInTopNavBar />
             <AuthenticatedTemplate>
+                <SidebarNav />
+            </AuthenticatedTemplate>
+            
+            <div style={{ marginLeft: "70px" }}>
+                <br />
+                {children}
+                <br />
                 <footer>
                     <center>
-                        How did we do?
-                        <a
-                            href="https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR_ivMYEeUKlEq8CxnMPgdNZUNDlUTTk2NVNYQkZSSjdaTk5KT1o4V1VVNS4u"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            {" "}
-                            Share your experience!
-                        </a>
+                        <p>© 2024 GitWise. All rights reserved.</p>
                     </center>
                 </footer>
-            </AuthenticatedTemplate>
+            </div>
         </>
     );
 };
