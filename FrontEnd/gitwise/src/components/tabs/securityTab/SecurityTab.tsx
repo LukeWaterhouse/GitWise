@@ -1,9 +1,9 @@
+
+import React, { useState } from "react";
+import TabbedSections, { Section } from "../../common/TabbedSections";
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
 import HistoryIcon from "@mui/icons-material/History";
-import React, { useState } from "react";
-import TabbedSections from "../../common/TabbedSections";
-import { Section } from "../../common/SectionTabs";
 import UsersPage from "./pages/usersPage/UsersPage";
 import PermissionsPage from "./pages/permissionsPage/PermissionsPage";
 

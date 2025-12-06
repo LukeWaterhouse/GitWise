@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import TabbedSections from "../../common/TabbedSections";
-import { Section } from "../../common/SectionTabs";
+import TabbedSections, { Section } from "../../common/TabbedSections";
 import PersonIcon from "@mui/icons-material/Person";
 import FolderIcon from "@mui/icons-material/Folder";
 import MailIcon from "@mui/icons-material/Mail";
