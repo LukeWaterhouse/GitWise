@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import {
-	Box,
-	Typography,
-} from "@mui/material";
-import SectionTabs, { Section } from "../../common/SectionTabs";
+import TabbedSections from "../../common/TabbedSections";
+import { Section } from "../../common/SectionTabs";
 import PersonIcon from "@mui/icons-material/Person";
 import FolderIcon from "@mui/icons-material/Folder";
 import MailIcon from "@mui/icons-material/Mail";
@@ -34,26 +31,14 @@ const SettingsPage: React.FC = () => {
 		setSelected(newValue);
 	};
 
-	return (
-		<Box sx={{ display: "flex", flexDirection: "column", minHeight: "100%" }}>
-			<SectionTabs
-				sections={settingsSections}
-				selected={selected}
-				onChange={handleTabChange}
-			/>
-			<Box
-				component="main"
-				sx={{
-					flex: 1,
-					p: 4,
-					backgroundColor: "#fff",
-					overflowY: "auto",
-				}}
-			>
-				{sectionComponents[settingsSections[selected].key]}
-			</Box>
-		</Box>
-	);
+	  return (
+	    <TabbedSections
+	      sections={settingsSections}
+	      selected={selected}
+	      onChange={handleTabChange}
+	      sectionComponents={sectionComponents}
+	    />
+	  );
 };
 
 export default SettingsPage;

@@ -1,29 +1,27 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "./theme/theme";
 import {
     PublicClientApplication,
     EventType,
     AuthenticationResult
 } from "@azure/msal-browser";
-import { msalConfig } from "./Auth/AuthConfig";
+import { msalConfig } from "./auth/AuthConfig";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/index.css";
 
-/**
- * Instantiate MSAL outside of the React tree.
- */
+
 const msalInstance = new PublicClientApplication(msalConfig);
 
-// Choose the first account if none is active
 const allAccounts = msalInstance.getAllAccounts();
 
 if (!msalInstance.getActiveAccount() && allAccounts.length > 0) {
-    msalInstance.setActiveAccount(allAccounts[0]); // FIXED: previously referenced getActiveAccount()[0]
+    msalInstance.setActiveAccount(allAccounts[0]);
 }
 
-// Listen for login events and set active account
 msalInstance.addEventCallback((event) => {
     if (
         event.eventType === EventType.LOGIN_SUCCESS &&
@@ -45,6 +43,8 @@ const root = createRoot(container);
 
 root.render(
     <React.StrictMode>
-        <App instance={msalInstance} />
+        <ThemeProvider theme={theme}>
+            <App instance={msalInstance} />
+        </ThemeProvider>
     </React.StrictMode>
 );
