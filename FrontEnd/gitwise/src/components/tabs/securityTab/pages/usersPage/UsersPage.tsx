@@ -1,9 +1,35 @@
 
-
 import React from "react";
-import UsersSection from "./common/UsersSection";
+import { Box, Typography } from "@mui/material";
+import { useUsers } from "../../../../../hooks";
+import { AddUserModal } from "./common/AddUserModal";
+import { UserTable } from "./common/UserTable";
+import { CreateUserInput } from "../../../../../types/user.types";
 
-const UsersPage: React.FC = () => <UsersSection />;
+const UsersPage: React.FC = () => {
+	const { users, addUser, loading } = useUsers();
+
+	const handleAddUser = (newUser: CreateUserInput) => {
+		addUser(newUser);
+	};
+
+	return (
+		<Box>
+			<Box
+				sx={{
+					display: "flex",
+					justifyContent: "space-between",
+					alignItems: "center",
+					mb: 3,
+				}}
+			>
+				<Typography variant="h6">User Information</Typography>
+				<AddUserModal onAddUser={handleAddUser} loading={loading} />
+			</Box>
+			<UserTable users={users} />
+		</Box>
+	);
+};
 
 export default UsersPage;
 
