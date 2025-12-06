@@ -1,4 +1,4 @@
-﻿namespace ApiService.Domain;
+﻿namespace UiService.Domain;
 
 public class Class1
 {

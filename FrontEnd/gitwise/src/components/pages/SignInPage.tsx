@@ -22,7 +22,7 @@ function SignInPage() {
 				minHeight: "100%",
 				backgroundColor: "#fff",
 			}}
-		></Box>
+		>Sign in Page!</Box>
 	);
 }
 

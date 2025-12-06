@@ -1,6 +1,6 @@
-using ApiService.Middleware;
+using UiService.Middleware;
 
-namespace ApiService.DependencyInjection;
+namespace UiService.DependencyInjection;
 
 public static class PresentationInjector
 {

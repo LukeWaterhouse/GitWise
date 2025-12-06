@@ -1,4 +1,4 @@
-using ApiService.DependencyInjection;
+using UiService.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,11 +1,12 @@
+// Moved from features/users/UsersSection.tsx
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { useUsers } from "../../../hooks";
+import { useUsers } from "../../../../../../hooks";
 import { AddUserModal } from "./AddUserModal";
 import { UserTable } from "./UserTable";
-import { CreateUserInput } from "../../../types/user.types";
+import { CreateUserInput } from "../../../../../../types/user.types";
 
-export const UsersSection: React.FC = () => {
+const UsersSection: React.FC = () => {
 	const { users, addUser, loading } = useUsers();
 
 	const handleAddUser = (newUser: CreateUserInput) => {
@@ -25,8 +26,9 @@ export const UsersSection: React.FC = () => {
 				<Typography variant="h6">User Information</Typography>
 				<AddUserModal onAddUser={handleAddUser} loading={loading} />
 			</Box>
-
 			<UserTable users={users} />
 		</Box>
 	);
 };
+
+export default UsersSection;

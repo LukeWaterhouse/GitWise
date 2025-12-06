@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiService.Presentation", "ApiService.Presentation\ApiService.Presentation.csproj", "{4C794834-2AAA-4942-BD56-943A77C82317}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UiService.Presentation", "UiService.Presentation\UiService.Presentation.csproj", "{4C794834-2AAA-4942-BD56-943A77C82317}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{820F3FB7-B049-4369-B6A9-E01AF120601F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{C08D2031-404A-4B7B-84F8-17FCC426BBFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiService.Domain", "ApiService.Domain\ApiService.Domain.csproj", "{F3FBA1B8-4279-4292-B499-630F897DA012}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UiService.Domain", "UiService.Domain\UiService.Domain.csproj", "{F3FBA1B8-4279-4292-B499-630F897DA012}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{D00712CD-105C-4038-8341-9D6DAE31C50E}"
 EndProject

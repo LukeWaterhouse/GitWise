@@ -1,6 +1,6 @@
-using ApiService.Models.Errors;
+using UiService.Models.Errors;
 
-namespace ApiService.Middleware;
+namespace UiService.Middleware;
 
 public class ExceptionMiddleware() : IMiddleware
 {

@@ -1,7 +1,6 @@
-namespace ApiService.Models;
+namespace UiService.Models.Requests;
 
 public record ProcessCommitsRequestDto(
-    string TenantId,
     string? OrganisationName,
     string AuthorUsername,
     DateTime Date);

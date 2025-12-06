@@ -9,10 +9,10 @@ import { IPublicClientApplication } from "@azure/msal-browser";
 import { Header, Footer } from "./components/common";
 import { Sidebar } from "./components/common";
 
-import LandingPage from "./pages/OverviewPage";
-import SignInPage from "./pages/SignInPage";
-import SettingsPage from "./pages/SettingsPage";
-import SecurityPage from "./pages/SecurityPage";
+import LandingPage from "./components/tabs/overviewTab/OverviewPage";
+import SignInPage from "./components/pages/SignInPage";
+import SettingsPage from "./components/tabs/settingsTab/SettingsTab";
+import SecurityPage from "./components/tabs/securityTab/SecurityTab";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { Box } from "@mui/material";
 import { TOP_NAV_HEIGHT } from "./constants";

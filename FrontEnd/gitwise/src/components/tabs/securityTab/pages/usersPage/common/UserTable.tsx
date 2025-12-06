@@ -9,7 +9,7 @@ import {
 	Paper,
 	Chip,
 } from "@mui/material";
-import { User } from "../../../types/user.types";
+import { User } from "../../../../../../types/user.types";
 
 interface UserTableProps {
 	users: User[];

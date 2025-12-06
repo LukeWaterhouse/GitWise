@@ -1,3 +1,3 @@
-namespace ApiService.Models.Errors;
+namespace UiService.Models.Errors;
 
 public record ErrorsDto(IList<ErrorDto> Errors);

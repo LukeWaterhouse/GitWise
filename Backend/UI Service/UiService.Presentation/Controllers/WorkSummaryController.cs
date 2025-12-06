@@ -1,7 +1,7 @@
-using ApiService.Models;
 using Microsoft.AspNetCore.Mvc;
+using UiService.Models.Requests;
 
-namespace ApiService.Controllers;
+namespace UiService.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
