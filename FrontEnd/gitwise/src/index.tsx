@@ -9,7 +9,7 @@ import {
 import { msalConfig } from "./Auth/AuthConfig";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./Styles/index.css";
+import "./styles/index.css";
 
 /**
  * Instantiate MSAL outside of the React tree.

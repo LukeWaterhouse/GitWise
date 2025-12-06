@@ -1,25 +1,18 @@
-import React, { useState } from "react";
-import {
-	Box,
-	Tabs,
-	Tab,
-	Container,
-	Paper,
-	Typography,
-} from "@mui/material";
+import { useState } from "react";
+import { Box, Tabs, Tab, Typography } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import FolderIcon from "@mui/icons-material/Folder";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 
-const settingsSections = [
+const SETTINGS_SECTIONS = [
 	{ key: "general", label: "General", icon: <PersonIcon /> },
 	{ key: "spaces", label: "Spaces and work items", icon: <FolderIcon /> },
 	{ key: "digests", label: "Digests", icon: <MailIcon /> },
 	{ key: "alerts", label: "Alerts", icon: <NotificationsIcon /> },
 ];
 
-const sectionContent: Record<string, React.ReactNode> = {
+const SECTION_CONTENT: Record<string, React.ReactNode> = {
 	general: (
 		<Box>
 			<Typography variant="h5" sx={{ mb: 2 }}>
@@ -62,7 +55,7 @@ const sectionContent: Record<string, React.ReactNode> = {
 	),
 };
 
-const SettingsPage: React.FC = () => {
+export const SettingsTabs = () => {
 	const [selected, setSelected] = useState(0);
 
 	const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -71,8 +64,7 @@ const SettingsPage: React.FC = () => {
 
 	return (
 		<Box sx={{ display: "flex", flexDirection: "column", minHeight: "100%" }}>
-			<Paper
-				elevation={0}
+			<Box
 				sx={{
 					borderBottom: "1px solid #e0e0e0",
 					backgroundColor: "#fff",
@@ -100,7 +92,7 @@ const SettingsPage: React.FC = () => {
 						},
 					}}
 				>
-					{settingsSections.map((section) => (
+					{SETTINGS_SECTIONS.map((section) => (
 						<Tab
 							key={section.key}
 							label={
@@ -118,7 +110,7 @@ const SettingsPage: React.FC = () => {
 						/>
 					))}
 				</Tabs>
-			</Paper>
+			</Box>
 
 			<Box
 				component="main"
@@ -129,10 +121,8 @@ const SettingsPage: React.FC = () => {
 					overflowY: "auto",
 				}}
 			>
-				{sectionContent[settingsSections[selected].key]}
+				{SECTION_CONTENT[SETTINGS_SECTIONS[selected].key]}
 			</Box>
 		</Box>
 	);
 };
-
-export default SettingsPage;

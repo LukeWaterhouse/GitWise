@@ -3,33 +3,30 @@ import {
     MsalProvider,
     AuthenticatedTemplate,
     UnauthenticatedTemplate,
-    useMsal
 } from "@azure/msal-react";
 import { IPublicClientApplication } from "@azure/msal-browser";
 
-import { PageLayout } from "./Components/PageLayout";
+import { Header, Footer } from "./components/common";
+import { Sidebar } from "./components/common";
 
-import "./Styles/App.css";
-
-import LandingPage from "./Pages/OverviewPage";
-import SignInPage from "./Pages/SignInPage";
-import SettingsPage from "./Pages/SettingsPage";
+import LandingPage from "./pages/OverviewPage";
+import SignInPage from "./pages/SignInPage";
+import SettingsPage from "./pages/SettingsPage";
+import SecurityPage from "./pages/SecurityPage";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { Box } from "@mui/material";
+import { TOP_NAV_HEIGHT } from "./constants";
 
 
 const MainContent: React.FC = () => {
     return (
         <div className="App">
-            <AuthenticatedTemplate>
-                <Routes>
-                    <Route path="/" element={<LandingPage />} />
-                    <Route path="/settings/*" element={<SettingsPage />} />
-                    <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
-            </AuthenticatedTemplate>
-            <UnauthenticatedTemplate>
-                <SignInPage />
-            </UnauthenticatedTemplate>
+            <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/settings/*" element={<SettingsPage />} />
+                <Route path="/security/*" element={<SecurityPage />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
         </div>
     );
 };
@@ -43,9 +40,39 @@ const App: React.FC<AppProps> = ({ instance }) => {
     return (
         <MsalProvider instance={instance}>
             <Router>
-                <PageLayout>
-                    <MainContent />
-                </PageLayout>
+                    <Box sx={{ display: "flex", height: "100vh", flexDirection: "column" }}>
+                        <Header />
+                        <Box sx={{ display: "flex", flex: 1, overflow: "hidden" }}>
+                            <AuthenticatedTemplate>
+                                <Box sx={{ width: "70px", flexShrink: 0, paddingTop: `${TOP_NAV_HEIGHT}px` }}>
+                                    <Sidebar />
+                                </Box>
+                            </AuthenticatedTemplate>
+                            <Box
+                                component="main"
+                                sx={{
+                                    flex: 1,
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    overflow: "auto",
+                                    backgroundColor: "#fff",
+                                    paddingTop: `${TOP_NAV_HEIGHT}px`,
+                                }}
+                            >
+                            <Box sx={{ flex: 1, overflow: "auto" }}>
+                                <AuthenticatedTemplate>
+                                    <MainContent />
+                                </AuthenticatedTemplate>
+                                <UnauthenticatedTemplate>
+                                    <SignInPage />
+                                </UnauthenticatedTemplate>
+                            </Box>
+                            <AuthenticatedTemplate>
+                                <Footer />
+                            </AuthenticatedTemplate>
+                        </Box>
+                    </Box>
+                </Box>
             </Router>
         </MsalProvider>
     );
