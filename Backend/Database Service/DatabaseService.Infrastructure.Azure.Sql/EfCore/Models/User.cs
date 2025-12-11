@@ -8,6 +8,9 @@ public class User
     public Guid Id { get; set; }
     
     [Required]
+    public string AzureObjectId { get; set; }
+    
+    [Required]
     public string Name { get; set; }
     
     [Required]

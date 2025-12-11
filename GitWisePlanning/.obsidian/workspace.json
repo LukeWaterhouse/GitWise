@@ -69,12 +69,14 @@
             "id": "d65f93af7cc64872",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Design V2/Architecture.md"
+                "file": "Design V2/Identity.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "Architecture"
+              "icon": "lucide-file",
+              "title": "Identity"
             }
           }
         ],
@@ -229,11 +231,13 @@
   },
   "active": "d65f93af7cc64872",
   "lastOpenFiles": [
+    "Pasted image 20251211112312.png",
+    "Pasted image 20251211112304.png",
+    "Design V2/Identity.md",
+    "Design V2/Architecture.md",
     "Design V1/Domain UMLs V1.md",
     "Design V1/Git Requests Diagram.md",
     "Design V1/GitWise Planning.md",
-    "Design V2/Identity.md",
-    "Design V2/Architecture.md",
     "ImageResources/Pasted image 20251017210753.png",
     "Pasted image 20251104140656.png",
     "Pasted image 20251104140553.png",
