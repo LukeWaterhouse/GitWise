@@ -10,9 +10,9 @@ public class AccountService(
 {
     public async Task<string> CreateAccountAsync(string emailAddress, string tenantId, Role role)
     {
-        var userId = await externalRegistrationService.RegisterUserAndGetIdAsync(emailAddress);
-        await externalDatabaseService.CreateUserAsync(emailAddress, userId, tenantId, role);
+        var externalUserId = await externalRegistrationService.RegisterUserAndGetIdAsync(emailAddress);
+        await externalDatabaseService.CreateUserAsync(emailAddress, externalUserId, tenantId, role);
         
-        return userId;
+        return externalUserId;
     }
 }

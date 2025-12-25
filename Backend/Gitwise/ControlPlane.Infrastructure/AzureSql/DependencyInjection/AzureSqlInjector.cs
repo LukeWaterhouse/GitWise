@@ -1,0 +1,23 @@
+using ControlPlane.Infrastructure.AzureSql.EfCore;
+using ControlPlane.Infrastructure.AzureSql.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace ControlPlane.Infrastructure.AzureSql.DependencyInjection;
+
+public static class AzureSqlInjector
+{
+    public static IServiceCollection AddAzureSqlServices(this IServiceCollection services, IConfiguration configuration)
+    {
+        var sqlConnectionString = configuration.GetSection("Azure:Sql:ConnectionString").Value;
+
+        services.AddDbContextFactory<GitwiseContext>(
+            options => options.UseSqlServer(sqlConnectionString));
+        
+        services.AddScoped<IDbTenantUserService, Services.DbTenantUserService>();
+        services.AddScoped<IDbDeveloperService, Services.DbDeveloperService>();
+        
+        return services;
+    }
+}
