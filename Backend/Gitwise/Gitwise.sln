@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{81F679
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{BF79D4EC-35CB-40BD-B064-AEF4B0D5D042}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SummaryEngine.Infrastructure.Azure.Ai", "SummaryEngine.Infrastructure.Azure.Ai\SummaryEngine.Infrastructure.Azure.Ai.csproj", "{3F4DDBDF-54DE-49E0-9470-2B486B707088}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SummaryEngine.Infrastructure.Azure", "SummaryEngine.Infrastructure.Azure\SummaryEngine.Infrastructure.Azure.csproj", "{3F4DDBDF-54DE-49E0-9470-2B486B707088}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{004AF0B1-AC88-46DB-93EB-6491C1BBDDD3}"
 EndProject

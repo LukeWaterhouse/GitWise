@@ -1,8 +1,7 @@
 namespace ControlPlane.Domain.Models;
 
-public class Tenant
+public class Tenant(Guid id, string name)
 {
-    public Guid Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-    
+    public Guid Id { get; } = id;
+    public string Name { get; } = name;
 }

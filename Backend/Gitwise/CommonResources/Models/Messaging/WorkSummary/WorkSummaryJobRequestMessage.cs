@@ -4,4 +4,4 @@ public record WorkSummaryJobRequestMessage(
     Guid JobId,
     Guid TenantId,
     Guid DeveloperId,
-    DateOnly SummaryDate);
+    DateOnly SummaryDate) : MessageBase(MessageType.WorkSummaryJob);

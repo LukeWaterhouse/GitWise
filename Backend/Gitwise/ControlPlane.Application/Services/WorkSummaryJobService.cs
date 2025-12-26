@@ -1,13 +1,15 @@
-using ControlPlane.Application.Interfaces;
+using ControlPlane.Application.Interfaces.Application;
+using ControlPlane.Application.Interfaces.External;
+using ControlPlane.Application.Interfaces.External.Repository;
 using ControlPlane.Domain.Models.Enums;
 
 namespace ControlPlane.Application.Services;
 
-public class WorkSummaryJobService(IRepositoryService repositoryService, IMessageService messageService) : IWorkSummaryJobService
+public class WorkSummaryJobService(ISummaryJobRepositoryService summaryJobRepositoryService, IMessageService messageService) : IWorkSummaryJobService
 {
     public async Task<Guid> GetWorkSummaryRequestJobIdAsync(Guid tenantId, Guid developerId, DateOnly date, CancellationToken ct)
     {
-        var job = await repositoryService.TryGetSummaryJobAsync(tenantId, developerId, date, ct);
+        var job = await summaryJobRepositoryService.TryGetSummaryJobAsync(tenantId, developerId, date, ct);
  
         if (job != null)
         {
@@ -17,13 +19,13 @@ public class WorkSummaryJobService(IRepositoryService repositoryService, IMessag
                 return job.JobId;
             }
             
-            await messageService.PublishWorkSummaryRequestAsync(job.JobId, tenantId, developerId, date);
+            await messageService.PublishWorkSummaryRequestAsync(job.JobId, tenantId, developerId, date, ct);
             return job.JobId;
         }
         
-        var jobId = await repositoryService.CreateSummaryJobAsync(tenantId, developerId, date, ct);
-        await messageService.PublishWorkSummaryRequestAsync(jobId, tenantId, developerId, date);
+        var summaryJob = await summaryJobRepositoryService.CreateSummaryJobAsync(tenantId, developerId, date, ct);
+        await messageService.PublishWorkSummaryRequestAsync(summaryJob.JobId, tenantId, developerId, date, ct);
         
-        return jobId;
+        return summaryJob.JobId;
     }
 }

@@ -1,4 +1,4 @@
-using ControlPlane.Application.Interfaces;
+using ControlPlane.Application.Interfaces.Application;
 using Microsoft.AspNetCore.Mvc;
 using Gitwise.Api.Models.Requests;
 using Gitwise.Api.Models.Responses;
@@ -10,7 +10,7 @@ namespace Gitwise.Api.Controllers;
 public class WorkSummaryJobController(IWorkSummaryJobService workSummaryJobService) : ControllerBase
 {
     [HttpPost]
-    public async Task<IActionResult> RequestWorkSummaryAsync([FromBody] WorkSummaryJobRequestDto jobRequest, CancellationToken ct)
+    public async Task<IActionResult> RequestWorkSummaryJobAsync([FromBody] WorkSummaryJobRequestDto jobRequest, CancellationToken ct)
     {
         if (jobRequest.TenantId == Guid.Empty || jobRequest.DeveloperId == Guid.Empty)
         {

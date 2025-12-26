@@ -1,56 +1,65 @@
+using ControlPlane.Application.Exceptions;
+using ControlPlane.Application.Exceptions.Enums;
+using ControlPlane.Application.Interfaces.External.Repository;
+using ControlPlane.Domain.Models;
+using ControlPlane.Domain.Models.Enums;
 using ControlPlane.Infrastructure.AzureSql.EfCore;
 using ControlPlane.Infrastructure.AzureSql.EfCore.Models;
 using ControlPlane.Infrastructure.AzureSql.EfCore.Models.Enums;
-using ControlPlane.Infrastructure.AzureSql.Exceptions;
-using ControlPlane.Infrastructure.AzureSql.Exceptions.Enums;
-using ControlPlane.Infrastructure.AzureSql.Interfaces;
+using ControlPlane.Infrastructure.AzureSql.Mapping;
 using Microsoft.EntityFrameworkCore;
 
 namespace ControlPlane.Infrastructure.AzureSql.Services;
 
-public class DbTenantUserService(IDbContextFactory<GitwiseContext> dbContextFactory) : IDbTenantUserService
+public class DbTenantUserService(IDbContextFactory<GitwiseContext> dbContextFactory) : ITenantUserRepositoryService
 {
-    public async Task CreateTenantIfNotExistsAsync(string tenantName)
+    public async Task<User> CreateUserAsync(string emailAddress, string externalUserId, Guid tenantId, Role role, CancellationToken ct)
     {
-        await using var dbContext = await dbContextFactory.CreateDbContextAsync();
-        
-        var exists = await dbContext.Tenants
-            .AnyAsync(t => t.Name == tenantName);
-
-        if (exists)
-            throw new DuplicateRecordException(RecordType.Tenant, tenantName);
-
-        var tenant = new Tenant { Name = tenantName };
-        dbContext.Tenants.Add(tenant);
-
-        await dbContext.SaveChangesAsync();
-    }
-
-    public async Task CreateUserIfNotExistsAsync(Guid tenantId, string userEmail, string azureAdObjectId, Role role = Role.User)
-    {
-        await using var dbContext = await dbContextFactory.CreateDbContextAsync();
+        await using var dbContext = await dbContextFactory.CreateDbContextAsync(ct);
         
         var tenant = await dbContext.Tenants
-            .FirstOrDefaultAsync(t => t.Id == tenantId);
+            .FirstOrDefaultAsync(t => t.Id == tenantId, ct);
         
         if (tenant == null)
-            throw new RecordNotFoundException(RecordType.Tenant, tenantId.ToString());
+                throw new RecordNotFoundException(RecordType.Tenant, tenantId.ToString());
 
         var exists = await dbContext.Users
-            .AnyAsync(u => u.TenantId == tenant.Id && u.Email == userEmail);
+            .AnyAsync(u => u.TenantId == tenant.Id && u.Email == emailAddress, ct);
         
         if (exists)
-            throw new DuplicateRecordException(RecordType.User, userEmail);
+            throw new DuplicateRecordException(RecordType.User, emailAddress);
 
-        var user = new User()
+        var dbUser = new DbUser()
         {
-            Email = userEmail,
+            Email = emailAddress,
             TenantId = tenant.Id,
-            Tenant = tenant,
-            Role = role,
-            AzureObjectId = azureAdObjectId
+            DbTenant = tenant,
+            DbRole = (DbRole)role,
+            AzureObjectId = externalUserId
         };
-        dbContext.Users.Add(user);
-        await dbContext.SaveChangesAsync();
+        
+        dbContext.Users.Add(dbUser);
+        await dbContext.SaveChangesAsync(ct);
+
+        return dbUser.ToDomain();
+
+    }
+
+    public async Task<Tenant> CreateTenantAsync(string name, CancellationToken ct)
+    {
+        await using var dbContext = await dbContextFactory.CreateDbContextAsync(ct);
+        
+        var exists = await dbContext.Tenants
+            .AnyAsync(t => t.Name == name, ct);
+
+        if (exists)
+            throw new DuplicateRecordException(RecordType.Tenant, name);
+
+        var dbTenant = new DbTenant { Name = name };
+        dbContext.Tenants.Add(dbTenant);
+
+        await dbContext.SaveChangesAsync(ct);
+
+        return dbTenant.ToDomain();
     }
 }

@@ -16,15 +16,15 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="DevTools\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\ControlPlane.Application\ControlPlane.Application.csproj" />
       <ProjectReference Include="..\SummaryEngine.Application\SummaryEngine.Application.csproj" />
       <ProjectReference Include="..\SummaryEngine.Domain\SummaryEngine.Domain.csproj" />
       <ProjectReference Include="..\SummaryEngine.Infrastructure.Adapter.Github\SummaryEngine.Infrastructure.Adapter.Github.csproj" />
-      <ProjectReference Include="..\SummaryEngine.Infrastructure.Azure.Ai\SummaryEngine.Infrastructure.Azure.Ai.csproj" />
+      <ProjectReference Include="..\SummaryEngine.Infrastructure.Azure\SummaryEngine.Infrastructure.Azure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Mapping\" />
     </ItemGroup>
 
 </Project>

@@ -1,8 +1,8 @@
 using SummaryEngine.Adapter.Github.DependencyInjection;
 using SummaryEngine.Domain.DependencyInjection;
-using SummaryEngine.Infrastructure.Azure.Ai.DependencyInjection;
 using Gitwise.Api.DependencyInjection;
 using Gitwise.Api.Middleware;
+using SummaryEngine.Infrastructure.Azure.AzureAi.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 

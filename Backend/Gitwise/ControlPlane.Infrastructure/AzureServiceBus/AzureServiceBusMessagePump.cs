@@ -1,7 +1,7 @@
 using System.Text.Json;
 using Azure.Messaging.ServiceBus;
 using CommonResources.Models.Messaging.WorkSummary;
-using ControlPlane.Application.Interfaces;
+using ControlPlane.Application.Interfaces.External;
 using Microsoft.Extensions.Configuration;
 
 namespace ControlPlane.Infrastructure.AzureServiceBus;
@@ -20,9 +20,9 @@ public class AzureServiceBusMessagePump : IMessageService
         _sender = _client.CreateSender(queueName);
     }
     
-    public async Task PublishWorkSummaryRequestAsync(Guid jobId, Guid tenantId, Guid developerId, DateOnly summaryDate)
+    public async Task PublishWorkSummaryRequestAsync(Guid jobId, Guid tenantId, Guid developerId, DateOnly summaryDate, CancellationToken ct)
     {
-        await SendAsync(new WorkSummaryJobRequestMessage(jobId, tenantId, developerId, summaryDate));
+        await SendAsync(new WorkSummaryJobRequestMessage(jobId, tenantId, developerId, summaryDate), ct);
     }
     
     private async Task SendAsync<T>(T message, CancellationToken ct = default)
