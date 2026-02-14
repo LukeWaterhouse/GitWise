@@ -5,7 +5,9 @@ using ControlPlane.Domain.Models.Enums;
 
 namespace ControlPlane.Application.Services;
 
-public class WorkSummaryJobService(ISummaryJobRepositoryService summaryJobRepositoryService, IMessageService messageService) : IWorkSummaryJobService
+public class WorkSummaryJobService(
+    ISummaryJobRepositoryService summaryJobRepositoryService, 
+    IMessageService messageService) : IWorkSummaryJobService
 {
     public async Task<Guid> GetWorkSummaryRequestJobIdAsync(Guid tenantId, Guid developerId, DateOnly date, CancellationToken ct)
     {

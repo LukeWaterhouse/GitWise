@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ControlPlane.Infrastructure.AzureSql.Services;
 
-public class DbSummaryJobRepositoryService(IDbContextFactory<GitwiseContext> dbContextFactory) : ISummaryJobRepositoryService
+public class DbSummaryJobRepositoryService(IDbContextFactory<ControlPlaneDbContext> dbContextFactory) : ISummaryJobRepositoryService
 {
     public async Task<SummaryJob?> TryGetSummaryJobAsync(Guid tenantId, Guid developerId, DateOnly summaryDate, CancellationToken ct)
     {
@@ -52,7 +52,7 @@ public class DbSummaryJobRepositoryService(IDbContextFactory<GitwiseContext> dbC
         
         var currentTime = DateTimeOffset.UtcNow;
 
-        var newDbSummaryJob = new DbSummaryJob()
+        var newDbSummaryJob = new DbWorkSummaryJob()
         {
             JobId = Guid.NewGuid(),
             TenantId = dbTenant.Id,

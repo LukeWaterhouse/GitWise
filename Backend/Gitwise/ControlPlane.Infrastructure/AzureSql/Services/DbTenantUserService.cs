@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ControlPlane.Infrastructure.AzureSql.Services;
 
-public class DbTenantUserService(IDbContextFactory<GitwiseContext> dbContextFactory) : ITenantUserRepositoryService
+public class DbTenantUserService(IDbContextFactory<ControlPlaneDbContext> dbContextFactory) : ITenantUserRepositoryService
 {
     public async Task<User> CreateUserAsync(string emailAddress, string externalUserId, Guid tenantId, Role role, CancellationToken ct)
     {
@@ -42,7 +42,6 @@ public class DbTenantUserService(IDbContextFactory<GitwiseContext> dbContextFact
         await dbContext.SaveChangesAsync(ct);
 
         return dbUser.ToDomain();
-
     }
 
     public async Task<Tenant> CreateTenantAsync(string name, CancellationToken ct)

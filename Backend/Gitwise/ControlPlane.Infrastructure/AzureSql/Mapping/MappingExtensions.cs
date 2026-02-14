@@ -16,18 +16,18 @@ public static class MappingExtensions
         return new Tenant(dbTenant.Id, dbTenant.Name);
     }
 
-    public static SummaryJob ToDomain(this DbSummaryJob dbSummaryJob)
+    public static SummaryJob ToDomain(this DbWorkSummaryJob dbWorkSummaryJob)
     {
         return new SummaryJob(
-            dbSummaryJob.JobId,
-            dbSummaryJob.DeveloperId,
-            dbSummaryJob.TenantId,
-            dbSummaryJob.SummaryDate.ToDateTime(TimeOnly.MinValue),
-            (JobStatus)dbSummaryJob.Status,
-            dbSummaryJob.RequestedAt,
-            dbSummaryJob.StartedAt,
-            dbSummaryJob.CompletedAt,
-            dbSummaryJob.ExistingSummaryId
+            dbWorkSummaryJob.JobId,
+            dbWorkSummaryJob.DeveloperId,
+            dbWorkSummaryJob.TenantId,
+            dbWorkSummaryJob.SummaryDate.ToDateTime(TimeOnly.MinValue),
+            (JobStatus)dbWorkSummaryJob.Status,
+            dbWorkSummaryJob.RequestedAt,
+            dbWorkSummaryJob.StartedAt,
+            dbWorkSummaryJob.CompletedAt,
+            dbWorkSummaryJob.ExistingSummaryId
         );
     }
 }

@@ -19,8 +19,7 @@
       <ProjectReference Include="..\ControlPlane.Application\ControlPlane.Application.csproj" />
       <ProjectReference Include="..\SummaryEngine.Application\SummaryEngine.Application.csproj" />
       <ProjectReference Include="..\SummaryEngine.Domain\SummaryEngine.Domain.csproj" />
-      <ProjectReference Include="..\SummaryEngine.Infrastructure.Adapter.Github\SummaryEngine.Infrastructure.Adapter.Github.csproj" />
-      <ProjectReference Include="..\SummaryEngine.Infrastructure.Azure\SummaryEngine.Infrastructure.Azure.csproj" />
+      <ProjectReference Include="..\SummaryEngine.Infrastructure\SummaryEngine.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>

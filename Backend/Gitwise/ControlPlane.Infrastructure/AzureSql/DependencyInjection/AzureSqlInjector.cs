@@ -11,7 +11,7 @@ public static class AzureSqlInjector
     {
         var sqlConnectionString = configuration.GetSection("Azure:Sql:ConnectionString").Value;
 
-        services.AddDbContextFactory<GitwiseContext>(
+        services.AddDbContextFactory<ControlPlaneDbContext>(
             options => options.UseSqlServer(sqlConnectionString));
         
         
