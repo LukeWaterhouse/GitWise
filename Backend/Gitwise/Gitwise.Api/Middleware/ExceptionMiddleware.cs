@@ -1,3 +1,4 @@
+using ControlPlane.Infrastructure.MicrosoftEntra.Exceptions;
 using Gitwise.Api.Models.Errors;
 
 namespace Gitwise.Api.Middleware;
@@ -11,6 +12,10 @@ public class ExceptionMiddleware() : IMiddleware
         try
         {
             await next(context);
+        }
+        catch (EntraUserExistsException)
+        {
+            await WriteSingleErrorResponseAsync(context, StatusCodes.Status409Conflict, "User already exists in Entra.");
         }
         catch (Exception ex)
         {

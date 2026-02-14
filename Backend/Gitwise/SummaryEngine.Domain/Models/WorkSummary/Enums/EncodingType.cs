@@ -1,4 +1,4 @@
-namespace SummaryEngine.Domain.Models.Enums;
+namespace SummaryEngine.Domain.Models.WorkSummary.Enums;
 
 public enum EncodingType
 {

@@ -1,4 +1,4 @@
-namespace SummaryEngine.Domain.Models;
+namespace SummaryEngine.Domain.Models.WorkSummary;
 
 public record ChangeStats(
     int Total,

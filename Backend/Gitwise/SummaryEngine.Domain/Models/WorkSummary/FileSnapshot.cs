@@ -1,6 +1,6 @@
-using SummaryEngine.Domain.Models.Enums;
+using SummaryEngine.Domain.Models.WorkSummary.Enums;
 
-namespace SummaryEngine.Domain.Models;
+namespace SummaryEngine.Domain.Models.WorkSummary;
 
 public record FileSnapshot(
     FileChange AssociatedFileChange,

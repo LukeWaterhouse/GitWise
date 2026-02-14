@@ -5,8 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Gitwise.Api.Controllers;
 
+[ApiController]
+[Route("api/[controller]")]
 public class UserController(IUserService userService) : ControllerBase
 {
+    [HttpPost]
     public async Task<IActionResult> CreateUserAsync(string emailAddress, Guid tenantId, RoleDto role, CancellationToken ct)
     {
         var user = await userService.CreateUserAsync(emailAddress, tenantId, (Role)role, ct);

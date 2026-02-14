@@ -1,4 +1,5 @@
 using SummaryEngine.Domain.Models;
+using SummaryEngine.Domain.Models.WorkSummary;
 
 namespace SummaryEngine.Domain.Interfaces.Domain;
 

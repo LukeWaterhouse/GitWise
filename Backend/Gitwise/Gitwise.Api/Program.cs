@@ -1,5 +1,7 @@
+using ControlPlane.Application.DependencyInjection;
 using SummaryEngine.Domain.DependencyInjection;
 using Gitwise.Api.DependencyInjection;
+using Gitwise.Api.DependencyInjection.Modules;
 using Gitwise.Api.Middleware;
 using SummaryEngine.Adapter.Github.AzureAi.DependencyInjection;
 using SummaryEngine.Adapter.Github.GithubAdapter.DependencyInjection;
@@ -15,10 +17,11 @@ services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
 services
-    .AddApiServices()
-    .AddDomainServices()
-    .AddGithubAdapterServices(builder.Configuration)
-    .AddAzureAiServices(builder.Configuration);
+    .AddApiServices();
+
+services
+    .AddControlPlaneServices(builder.Configuration)
+    .AddSummaryEngineServices(builder.Configuration);
 
 # endregion
 

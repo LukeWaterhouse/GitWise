@@ -13,9 +13,9 @@ public static class MicrosoftEntraInjector
 {
     public static IServiceCollection AddMicrosoftEntraServices(this IServiceCollection services, IConfiguration config)
     {
-        var tenantId = config["AzureAd:TenantId"];
-        var clientId = config["AzureAd:ClientId"];
-        var clientSecret = config["AzureAd:ClientSecret"];
+        var tenantId = config["Azure:AzureAd:TenantId"];
+        var clientId = config["Azure:AzureAd:ClientId"];
+        var clientSecret = config["Azure:AzureAd:ClientSecret"];
 
         var credential = new ClientSecretCredential(
             tenantId,
