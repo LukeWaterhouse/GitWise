@@ -1,6 +1,7 @@
 using SummaryEngine.Adapter.Github.AzureAi.DependencyInjection;
 using SummaryEngine.Adapter.Github.GithubAdapter.DependencyInjection;
 using SummaryEngine.Domain.DependencyInjection;
+using SummaryEngine.Adapter.Github.AzureSql.DependencyInjection;
 
 namespace Gitwise.Api.DependencyInjection.Modules;
 
@@ -11,9 +12,9 @@ public static class SummaryEngineInjector
         services
             .AddDomainServices()
             .AddGithubAdapterServices(config)
-            .AddAzureAiServices(config);
+            .AddAzureAiServices(config)
+            .AddAzureSqlServices(config);
         
         return services;
     }
-    
 }

@@ -27,6 +27,19 @@ public class ControlPlaneDbContext(DbContextOptions<ControlPlaneDbContext> optio
             .HasForeignKey(d => d.TenantId)
             .OnDelete(DeleteBehavior.Cascade);
 
+        // Configure SummaryJobs relationships to avoid multiple cascade paths
+        modelBuilder.Entity<DbWorkSummaryJob>()
+            .HasOne(sj => sj.Tenant)
+            .WithMany()
+            .HasForeignKey(sj => sj.TenantId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder.Entity<DbWorkSummaryJob>()
+            .HasOne(sj => sj.Developer)
+            .WithMany()
+            .HasForeignKey(sj => sj.DeveloperId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         modelBuilder.Entity<DbDeveloper>()
             .HasIndex(d => new { d.TenantId, d.Email })
             .IsUnique();
