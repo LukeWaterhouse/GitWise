@@ -17,4 +17,9 @@ public class UserService(
 
         return user;
     }
+
+    public async Task<List<User>> GetUsersByTenantIdAsync(Guid tenantId, CancellationToken ct)
+    {
+        return await tenantUserRepositoryService.GetUsersByTenantIdAsync(tenantId, ct);
+    }
 }

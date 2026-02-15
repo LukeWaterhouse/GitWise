@@ -22,4 +22,11 @@ public class TenantController(ITenantService tenantService) : ControllerBase
         var tenants = await tenantService.GetTenantsAsync(ct);
         return Ok(tenants.Select(t => t.FromDomain()));        
     }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteTenantAsync([FromBody] DeleteTenantRequestDto request, CancellationToken ct)
+    {
+        await tenantService.DeleteTenantAsync(request.TenantId, ct);
+        return NoContent();
+    }
 }

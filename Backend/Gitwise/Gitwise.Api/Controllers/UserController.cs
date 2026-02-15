@@ -11,10 +11,18 @@ namespace Gitwise.Api.Controllers;
 public class UserController(IUserService userService) : ControllerBase
 {
     [HttpPost]
-    public async Task<IActionResult> CreateUserAsync(string emailAddress, Guid tenantId, RoleDto role, CancellationToken ct)
+    public async Task<IActionResult> CreateUserAsync(string emailAddress, Guid tenantId, RoleDto role,
+        CancellationToken ct)
     {
         var user = await userService.CreateUserAsync(emailAddress, tenantId, (Role)role, ct);
-        
+
         return Ok(user.FromDomain());
+    }
+
+    [HttpGet("tenant/{tenantId}")]
+    public async Task<IActionResult> GetUsersByTenantAsync(Guid tenantId, CancellationToken ct)
+    {
+        var users = await userService.GetUsersByTenantIdAsync(tenantId, ct);
+        return Ok(users.Select(u => u.FromDomain()));
     }
 }

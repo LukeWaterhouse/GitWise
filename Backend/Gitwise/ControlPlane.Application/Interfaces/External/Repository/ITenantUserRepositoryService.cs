@@ -10,4 +10,8 @@ public interface ITenantUserRepositoryService
     public Task<Tenant> CreateTenantAsync(string name, CancellationToken ct);
     
     public Task<List<Tenant>> GetTenants(CancellationToken ct);
+    
+    public Task DeleteTenantAsync(Guid tenantId, CancellationToken ct);
+    
+    public Task<List<User>> GetUsersByTenantIdAsync(Guid tenantId, CancellationToken ct);
 }

@@ -71,4 +71,36 @@ public class DbTenantUserService(IDbContextFactory<ControlPlaneDbContext> dbCont
         
         return dbTenants.Select(t => t.ToDomain()).ToList();
     }
+
+    public async Task DeleteTenantAsync(Guid tenantId, CancellationToken ct)
+    {
+        await using var dbContext = await dbContextFactory.CreateDbContextAsync(ct);
+        
+        var tenant = await dbContext.Tenants
+            .FirstOrDefaultAsync(t => t.Id == tenantId, ct);
+        
+        if (tenant == null)
+            throw new RecordNotFoundException(RecordType.Tenant, tenantId.ToString());
+
+        dbContext.Tenants.Remove(tenant);
+        await dbContext.SaveChangesAsync(ct);
+    }
+
+    public async Task<List<User>> GetUsersByTenantIdAsync(Guid tenantId, CancellationToken ct)
+    {
+        await using var dbContext = await dbContextFactory.CreateDbContextAsync(ct);
+        
+        var tenant = await dbContext.Tenants
+            .FirstOrDefaultAsync(t => t.Id == tenantId, ct);
+        
+        if (tenant == null)
+            throw new RecordNotFoundException(RecordType.Tenant, tenantId.ToString());
+
+        var dbUsers = await dbContext.Users
+            .Where(u => u.TenantId == tenantId)
+            .Include(u => u.DbTenant)
+            .ToListAsync(ct);
+        
+        return dbUsers.Select(u => u.ToDomain()).ToList();
+    }
 }

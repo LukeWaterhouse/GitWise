@@ -17,4 +17,9 @@ public class TenantService(ITenantUserRepositoryService tenantUserRepositoryServ
         var tenants = await tenantUserRepositoryService.GetTenants(ct);
         return tenants;
     }
+
+    public async Task DeleteTenantAsync(Guid tenantId, CancellationToken ct)
+    {
+        await tenantUserRepositoryService.DeleteTenantAsync(tenantId, ct);
+    }
 }

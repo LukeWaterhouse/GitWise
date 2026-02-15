@@ -64,7 +64,25 @@ export const tenantService = {
     throw new Error('Update tenant functionality not implemented yet');
   },
 
+  // Delete tenant
   deleteTenant: async (id: string): Promise<void> => {
-    throw new Error('Delete tenant functionality not implemented yet');
+    try {
+      const response = await fetch(buildApiUrl(API_CONFIG.ENDPOINTS.TENANTS), {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          tenantId: id,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to delete tenant: ${response.status} ${response.statusText}`);
+      }
+    } catch (error) {
+      console.error('Error deleting tenant:', error);
+      throw error;
+    }
   }
 };
