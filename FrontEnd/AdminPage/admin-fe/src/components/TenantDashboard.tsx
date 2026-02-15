@@ -39,7 +39,11 @@ const TenantDashboard: React.FC = () => {
       const data = await tenantService.getTenants();
       setTenants(data);
     } catch (error) {
-      showSnackbar('Failed to load tenants', 'error');
+      console.error('Failed to load tenants:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Failed to load tenants';
+      showSnackbar(errorMessage, 'error');
+      // Set empty array on error to avoid showing stale data
+      setTenants([]);
     } finally {
       setLoading(false);
     }
@@ -63,23 +67,16 @@ const TenantDashboard: React.FC = () => {
       setTenants(prev => [...prev, newTenant]);
       showSnackbar(`Tenant ${newTenant.name} created successfully!`, 'success');
     } catch (error) {
-      showSnackbar('Failed to create tenant', 'error');
+      console.error('Failed to create tenant:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Failed to create tenant';
+      showSnackbar(errorMessage, 'error');
       throw error;
     }
   };
 
-  const handleStatusChange = async (tenantId: string, status: Tenant['status']) => {
-    try {
-      const updatedTenant = await tenantService.updateTenantStatus(tenantId, status);
-      setTenants(prev => 
-        prev.map(tenant => 
-          tenant.id === tenantId ? updatedTenant : tenant
-        )
-      );
-      showSnackbar(`Tenant status updated to ${status}`, 'success');
-    } catch (error) {
-      showSnackbar('Failed to update tenant status', 'error');
-    }
+  const handleStatusChange = async (tenantId: string) => {
+    // Placeholder for future edit functionality
+    showSnackbar('Edit functionality not implemented yet', 'info');
   };
 
   const handleDeleteTenant = async (tenantId: string) => {
@@ -88,21 +85,17 @@ const TenantDashboard: React.FC = () => {
       setTenants(prev => prev.filter(tenant => tenant.id !== tenantId));
       showSnackbar('Tenant deleted successfully', 'success');
     } catch (error) {
-      showSnackbar('Failed to delete tenant', 'error');
+      console.error('Failed to delete tenant:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Failed to delete tenant';
+      showSnackbar(errorMessage, 'error');
     }
   };
 
   const getStatsData = () => {
     const totalTenants = tenants.length;
-    const activeTenants = tenants.filter(t => t.status === 'active').length;
-    const pendingTenants = tenants.filter(t => t.status === 'pending').length;
-    const totalUsers = tenants.reduce((sum, tenant) => sum + tenant.currentUsers, 0);
     
     return {
-      totalTenants,
-      activeTenants,
-      pendingTenants,
-      totalUsers
+      totalTenants
     };
   };
 
@@ -149,33 +142,6 @@ const TenantDashboard: React.FC = () => {
             Total Tenants
           </Typography>
         </Paper>
-        
-        <Paper sx={{ p: 3, minWidth: 200, flex: 1 }}>
-          <Typography variant="h3" color="success.main" gutterBottom>
-            {stats.activeTenants}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Active Tenants
-          </Typography>
-        </Paper>
-        
-        <Paper sx={{ p: 3, minWidth: 200, flex: 1 }}>
-          <Typography variant="h3" color="warning.main" gutterBottom>
-            {stats.pendingTenants}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Pending Approval
-          </Typography>
-        </Paper>
-        
-        <Paper sx={{ p: 3, minWidth: 200, flex: 1 }}>
-          <Typography variant="h3" color="info.main" gutterBottom>
-            {stats.totalUsers}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Total Users
-          </Typography>
-        </Paper>
       </Box>
 
       {/* Tenants Table */}
@@ -188,7 +154,7 @@ const TenantDashboard: React.FC = () => {
         <TenantsTable
           tenants={tenants}
           loading={loading}
-          onStatusChange={handleStatusChange}
+          onEdit={handleStatusChange}
           onDelete={handleDeleteTenant}
         />
       </Paper>

@@ -6,10 +6,6 @@ import {
   DialogActions,
   TextField,
   Button,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Box,
   Stack,
   CircularProgress,
@@ -29,11 +25,7 @@ const AddTenantDialog: React.FC<AddTenantDialogProps> = ({
   onSubmit
 }) => {
   const [formData, setFormData] = useState<CreateTenantData>({
-    name: '',
-    email: '',
-    company: '',
-    plan: 'basic',
-    maxUsers: 10
+    name: ''
   });
   
   const [loading, setLoading] = useState(false);
@@ -45,7 +37,7 @@ const AddTenantDialog: React.FC<AddTenantDialogProps> = ({
     const value = event.target.value;
     setFormData(prev => ({
       ...prev,
-      [field]: field === 'maxUsers' ? parseInt(value) || 0 : value
+      [field]: value
     }));
   };
 
@@ -57,11 +49,7 @@ const AddTenantDialog: React.FC<AddTenantDialogProps> = ({
     try {
       await onSubmit(formData);
       setFormData({
-        name: '',
-        email: '',
-        company: '',
-        plan: 'basic',
-        maxUsers: 10
+        name: ''
       });
       onClose();
     } catch (err) {
@@ -78,7 +66,7 @@ const AddTenantDialog: React.FC<AddTenantDialogProps> = ({
     }
   };
 
-  const isFormValid = formData.name && formData.email && formData.company && formData.maxUsers > 0;
+  const isFormValid = formData.name.trim().length > 0;
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
@@ -92,62 +80,14 @@ const AddTenantDialog: React.FC<AddTenantDialogProps> = ({
           )}
           
           <Stack spacing={2} sx={{ mt: 1 }}>
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              <TextField
-                fullWidth
-                label="Full Name"
-                value={formData.name}
-                onChange={handleInputChange('name')}
-                required
-                disabled={loading}
-              />
-              
-              <TextField
-                fullWidth
-                label="Email"
-                type="email"
-                value={formData.email}
-                onChange={handleInputChange('email')}
-                required
-                disabled={loading}
-              />
-            </Box>
-            
             <TextField
               fullWidth
-              label="Company"
-              value={formData.company}
-              onChange={handleInputChange('company')}
+              label="Tenant Name"
+              value={formData.name}
+              onChange={handleInputChange('name')}
               required
               disabled={loading}
             />
-            
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              <FormControl fullWidth required>
-                <InputLabel>Plan</InputLabel>
-                <Select
-                  value={formData.plan}
-                  label="Plan"
-                  onChange={handleInputChange('plan')}
-                  disabled={loading}
-                >
-                  <MenuItem value="basic">Basic</MenuItem>
-                  <MenuItem value="premium">Premium</MenuItem>
-                  <MenuItem value="enterprise">Enterprise</MenuItem>
-                </Select>
-              </FormControl>
-              
-              <TextField
-                fullWidth
-                label="Max Users"
-                type="number"
-                value={formData.maxUsers}
-                onChange={handleInputChange('maxUsers')}
-                required
-                disabled={loading}
-                inputProps={{ min: 1 }}
-              />
-            </Box>
           </Stack>
         </DialogContent>
         

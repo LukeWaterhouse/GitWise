@@ -1,10 +1,6 @@
-using ControlPlane.Application.DependencyInjection;
-using SummaryEngine.Domain.DependencyInjection;
 using Gitwise.Api.DependencyInjection;
 using Gitwise.Api.DependencyInjection.Modules;
 using Gitwise.Api.Middleware;
-using SummaryEngine.Adapter.Github.AzureAi.DependencyInjection;
-using SummaryEngine.Adapter.Github.GithubAdapter.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 

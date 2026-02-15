@@ -8,4 +8,6 @@ public interface ITenantUserRepositoryService
     Task<User> CreateUserAsync(string emailAddress, string externalUserId, Guid tenantId, Role role, CancellationToken ct);
     
     public Task<Tenant> CreateTenantAsync(string name, CancellationToken ct);
+    
+    public Task<List<Tenant>> GetTenants(CancellationToken ct);
 }

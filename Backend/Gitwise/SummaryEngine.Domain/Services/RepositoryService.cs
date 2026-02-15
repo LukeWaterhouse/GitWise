@@ -1,6 +1,5 @@
 using SummaryEngine.Domain.Interfaces.Domain;
 using SummaryEngine.Domain.Interfaces.External.Git;
-using SummaryEngine.Domain.Models;
 using SummaryEngine.Domain.Models.WorkSummary;
 
 namespace SummaryEngine.Domain.Services;

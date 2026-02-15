@@ -1,6 +1,5 @@
 using SummaryEngine.Adapter.Github.GithubAdapter.Interfaces;
 using SummaryEngine.Domain.Interfaces.External.Git;
-using SummaryEngine.Domain.Models;
 using SummaryEngine.Domain.Models.WorkSummary;
 
 namespace SummaryEngine.Adapter.Github.GithubAdapter.Services;

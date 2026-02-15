@@ -27,8 +27,4 @@
       <ProjectReference Include="..\SummaryEngine.Infrastructure\SummaryEngine.Infrastructure.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Mapping\" />
-    </ItemGroup>
-
 </Project>

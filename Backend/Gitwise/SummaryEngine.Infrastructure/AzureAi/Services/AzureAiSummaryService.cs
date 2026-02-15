@@ -2,7 +2,6 @@ using SummaryEngine.Adapter.Github.AzureAi.Interfaces;
 using SummaryEngine.Adapter.Github.AzureAi.Models.AiPrompts;
 using SummaryEngine.Adapter.Github.AzureAi.Models.AiPrompts.Commit;
 using SummaryEngine.Domain.Interfaces.External.Ai;
-using SummaryEngine.Domain.Models;
 using SummaryEngine.Domain.Models.WorkSummary;
 
 namespace SummaryEngine.Adapter.Github.AzureAi.Services;

@@ -1,110 +1,46 @@
 import { Tenant, CreateTenantData } from '../types/tenant';
+import { API_CONFIG, buildApiUrl } from '../config/api';
 
-// Mock data for demonstration
-const mockTenants: Tenant[] = [
-  {
-    id: '1',
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    company: 'Tech Corp',
-    status: 'active',
-    createdAt: new Date('2024-01-15'),
-    lastLogin: new Date('2024-02-14'),
-    plan: 'premium',
-    maxUsers: 50,
-    currentUsers: 23
-  },
-  {
-    id: '2',
-    name: 'Jane Smith',
-    email: 'jane.smith@startup.com',
-    company: 'Startup Inc',
-    status: 'active',
-    createdAt: new Date('2024-02-01'),
-    lastLogin: new Date('2024-02-13'),
-    plan: 'basic',
-    maxUsers: 10,
-    currentUsers: 5
-  },
-  {
-    id: '3',
-    name: 'Bob Johnson',
-    email: 'bob@enterprise.com',
-    company: 'Enterprise Solutions',
-    status: 'inactive',
-    createdAt: new Date('2023-12-20'),
-    lastLogin: new Date('2024-01-30'),
-    plan: 'enterprise',
-    maxUsers: 200,
-    currentUsers: 0
-  },
-  {
-    id: '4',
-    name: 'Alice Wilson',
-    email: 'alice@newcompany.com',
-    company: 'New Company LLC',
-    status: 'pending',
-    createdAt: new Date('2024-02-10'),
-    plan: 'basic',
-    maxUsers: 10,
-    currentUsers: 1
-  }
-];
-
-let tenants = [...mockTenants];
-
+// API service for tenant operations
 export const tenantService = {
   // Get all tenants
   getTenants: async (): Promise<Tenant[]> => {
-    return new Promise((resolve) => {
-      setTimeout(() => resolve([...tenants]), 500);
-    });
+    try {
+      const response = await fetch(buildApiUrl(API_CONFIG.ENDPOINTS.TENANTS), {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch tenants: ${response.status} ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      
+      // Transform the API response to match our Tenant interface
+      // API returns: { id: string, name: string }
+      return data.map((tenant: any) => ({
+        id: tenant.id,
+        name: tenant.name || 'Unknown',
+      }));
+    } catch (error) {
+      console.error('Error fetching tenants:', error);
+      throw error;
+    }
   },
 
-  // Create a new tenant
+  // Placeholder functions - not implemented yet
   createTenant: async (tenantData: CreateTenantData): Promise<Tenant> => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const newTenant: Tenant = {
-          ...tenantData,
-          id: Date.now().toString(),
-          status: 'pending',
-          createdAt: new Date(),
-          currentUsers: 0
-        };
-        tenants.push(newTenant);
-        resolve(newTenant);
-      }, 500);
-    });
+    throw new Error('Create tenant functionality not implemented yet');
   },
 
-  // Update tenant status
-  updateTenantStatus: async (id: string, status: Tenant['status']): Promise<Tenant> => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const tenantIndex = tenants.findIndex(t => t.id === id);
-        if (tenantIndex !== -1) {
-          tenants[tenantIndex] = { ...tenants[tenantIndex], status };
-          resolve(tenants[tenantIndex]);
-        } else {
-          reject(new Error('Tenant not found'));
-        }
-      }, 300);
-    });
+  updateTenant: async (id: string, tenantData: Partial<Tenant>): Promise<Tenant> => {
+    throw new Error('Update tenant functionality not implemented yet');
   },
 
-  // Delete tenant
   deleteTenant: async (id: string): Promise<void> => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const tenantIndex = tenants.findIndex(t => t.id === id);
-        if (tenantIndex !== -1) {
-          tenants.splice(tenantIndex, 1);
-          resolve();
-        } else {
-          reject(new Error('Tenant not found'));
-        }
-      }, 300);
-    });
+    throw new Error('Delete tenant functionality not implemented yet');
   }
 };

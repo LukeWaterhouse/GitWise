@@ -8,6 +8,7 @@ using ControlPlane.Infrastructure.AzureSql.EfCore.Models;
 using ControlPlane.Infrastructure.AzureSql.EfCore.Models.Enums;
 using ControlPlane.Infrastructure.AzureSql.Mapping;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Graph.Drives.Item.Items.Item.Workbook.Functions.Dvar;
 
 namespace ControlPlane.Infrastructure.AzureSql.Services;
 
@@ -60,5 +61,14 @@ public class DbTenantUserService(IDbContextFactory<ControlPlaneDbContext> dbCont
         await dbContext.SaveChangesAsync(ct);
 
         return dbTenant.ToDomain();
+    }
+
+    public async Task<List<Tenant>> GetTenants(CancellationToken ct)
+    {
+        await using var dbContext = await dbContextFactory.CreateDbContextAsync(ct);
+        
+        var dbTenants = await dbContext.Tenants.ToListAsync(ct);
+        
+        return dbTenants.Select(t => t.ToDomain()).ToList();
     }
 }

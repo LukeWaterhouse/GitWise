@@ -1,5 +1,6 @@
 using ControlPlane.Application.Interfaces.Application;
 using ControlPlane.Domain.Models.Enums;
+using Gitwise.Api.Mapping;
 using Gitwise.Api.Models.Requests.Enums;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +15,6 @@ public class UserController(IUserService userService) : ControllerBase
     {
         var user = await userService.CreateUserAsync(emailAddress, tenantId, (Role)role, ct);
         
-        return Ok(user);
+        return Ok(user.FromDomain());
     }
 }

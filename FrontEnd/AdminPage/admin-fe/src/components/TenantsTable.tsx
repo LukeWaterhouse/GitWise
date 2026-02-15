@@ -7,7 +7,6 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Chip,
   IconButton,
   Menu,
   MenuItem,
@@ -23,23 +22,21 @@ import {
 } from '@mui/material';
 import {
   MoreVert as MoreVertIcon,
-  Business as BusinessIcon,
-  Email as EmailIcon,
-  People as PeopleIcon
+  Business as BusinessIcon
 } from '@mui/icons-material';
 import { Tenant } from '../types/tenant';
 
 interface TenantsTableProps {
   tenants: Tenant[];
   loading?: boolean;
-  onStatusChange: (tenantId: string, status: Tenant['status']) => void;
+  onEdit?: (tenantId: string) => void;
   onDelete: (tenantId: string) => void;
 }
 
 const TenantsTable: React.FC<TenantsTableProps> = ({
   tenants,
   loading = false,
-  onStatusChange,
+  onEdit,
   onDelete
 }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -57,9 +54,9 @@ const TenantsTable: React.FC<TenantsTableProps> = ({
     setSelectedTenant(null);
   };
 
-  const handleStatusChange = (status: Tenant['status']) => {
-    if (selectedTenant) {
-      onStatusChange(selectedTenant.id, status);
+  const handleEditClick = () => {
+    if (selectedTenant && onEdit) {
+      onEdit(selectedTenant.id);
     }
     handleMenuClose();
   };
@@ -81,42 +78,6 @@ const TenantsTable: React.FC<TenantsTableProps> = ({
   const handleDeleteCancel = () => {
     setDeleteDialogOpen(false);
     setTenantToDelete(null);
-  };
-
-  const getStatusColor = (status: Tenant['status']) => {
-    switch (status) {
-      case 'active':
-        return 'success';
-      case 'inactive':
-        return 'error';
-      case 'pending':
-        return 'warning';
-      default:
-        return 'default';
-    }
-  };
-
-  const getPlanColor = (plan: Tenant['plan']) => {
-    switch (plan) {
-      case 'basic':
-        return 'default';
-      case 'premium':
-        return 'primary';
-      case 'enterprise':
-        return 'secondary';
-      default:
-        return 'default';
-    }
-  };
-
-  const formatDate = (date: Date) => {
-    return new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    }).format(date);
   };
 
   if (loading) {
@@ -147,13 +108,7 @@ const TenantsTable: React.FC<TenantsTableProps> = ({
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Tenant</TableCell>
-              <TableCell>Company</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>Plan</TableCell>
-              <TableCell>Users</TableCell>
-              <TableCell>Created</TableCell>
-              <TableCell>Last Login</TableCell>
+              <TableCell>Name</TableCell>
               <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -161,63 +116,8 @@ const TenantsTable: React.FC<TenantsTableProps> = ({
             {tenants.map((tenant) => (
               <TableRow key={tenant.id} hover>
                 <TableCell>
-                  <Box>
-                    <Typography variant="subtitle2">
-                      {tenant.name}
-                    </Typography>
-                    <Box display="flex" alignItems="center" mt={0.5}>
-                      <EmailIcon sx={{ fontSize: 14, color: 'text.secondary', mr: 0.5 }} />
-                      <Typography variant="caption" color="text.secondary">
-                        {tenant.email}
-                      </Typography>
-                    </Box>
-                  </Box>
-                </TableCell>
-                
-                <TableCell>
-                  <Box display="flex" alignItems="center">
-                    <BusinessIcon sx={{ fontSize: 16, color: 'text.secondary', mr: 1 }} />
-                    <Typography variant="body2">
-                      {tenant.company}
-                    </Typography>
-                  </Box>
-                </TableCell>
-                
-                <TableCell>
-                  <Chip
-                    label={tenant.status}
-                    color={getStatusColor(tenant.status) as any}
-                    size="small"
-                    variant="outlined"
-                  />
-                </TableCell>
-                
-                <TableCell>
-                  <Chip
-                    label={tenant.plan.toUpperCase()}
-                    color={getPlanColor(tenant.plan) as any}
-                    size="small"
-                  />
-                </TableCell>
-                
-                <TableCell>
-                  <Box display="flex" alignItems="center">
-                    <PeopleIcon sx={{ fontSize: 16, color: 'text.secondary', mr: 0.5 }} />
-                    <Typography variant="body2">
-                      {tenant.currentUsers}/{tenant.maxUsers}
-                    </Typography>
-                  </Box>
-                </TableCell>
-                
-                <TableCell>
                   <Typography variant="body2">
-                    {formatDate(tenant.createdAt)}
-                  </Typography>
-                </TableCell>
-                
-                <TableCell>
-                  <Typography variant="body2" color={tenant.lastLogin ? 'text.primary' : 'text.secondary'}>
-                    {tenant.lastLogin ? formatDate(tenant.lastLogin) : 'Never'}
+                    {tenant.name}
                   </Typography>
                 </TableCell>
                 
@@ -242,19 +142,9 @@ const TenantsTable: React.FC<TenantsTableProps> = ({
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
       >
-        {selectedTenant?.status !== 'active' && (
-          <MenuItem onClick={() => handleStatusChange('active')}>
-            Activate
-          </MenuItem>
-        )}
-        {selectedTenant?.status !== 'inactive' && (
-          <MenuItem onClick={() => handleStatusChange('inactive')}>
-            Deactivate
-          </MenuItem>
-        )}
-        {selectedTenant?.status !== 'pending' && (
-          <MenuItem onClick={() => handleStatusChange('pending')}>
-            Set to Pending
+        {onEdit && (
+          <MenuItem onClick={handleEditClick}>
+            Edit
           </MenuItem>
         )}
         <MenuItem onClick={handleDeleteClick} sx={{ color: 'error.main' }}>
@@ -271,7 +161,7 @@ const TenantsTable: React.FC<TenantsTableProps> = ({
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Are you sure you want to delete <strong>{tenantToDelete?.name}</strong> from <strong>{tenantToDelete?.company}</strong>?
+            Are you sure you want to delete <strong>{tenantToDelete?.name}</strong>?
             This action cannot be undone.
           </DialogContentText>
         </DialogContent>
