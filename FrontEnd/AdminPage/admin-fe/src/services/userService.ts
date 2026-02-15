@@ -22,9 +22,10 @@ export const userService = {
       // Transform the API response to match our User interface
       return data.map((user: any) => ({
         id: user.id,
-        name: user.name || 'Unknown',
-        email: user.email || '',
+        emailAddress: user.emailAddress || user.email || '',
         tenantId: tenantId,
+        role: user.role || 1,
+        externalID: user.externalID || user.externalId || '',
       }));
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -35,14 +36,15 @@ export const userService = {
   // Create a new user for a tenant
   createUser: async (userData: CreateUserData): Promise<User> => {
     try {
-      const response = await fetch(buildApiUrl(`${API_CONFIG.ENDPOINTS.TENANTS}/${userData.tenantId}/users`), {
+      const response = await fetch(buildApiUrl('/api/User'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: userData.name,
-          email: userData.email,
+          emailAddress: userData.emailAddress,
+          tenantId: userData.tenantId,
+          role: userData.role,
         }),
       });
 
@@ -54,9 +56,10 @@ export const userService = {
       
       return {
         id: data.id,
-        name: data.name || userData.name,
-        email: data.email || userData.email,
+        emailAddress: data.emailAddress || userData.emailAddress,
         tenantId: userData.tenantId,
+        role: data.role || userData.role,
+        externalID: data.externalID || data.externalId || '',
       };
     } catch (error) {
       console.error('Error creating user:', error);

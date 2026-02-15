@@ -8,7 +8,11 @@ import {
   Button,
   Stack,
   CircularProgress,
-  Alert
+  Alert,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem
 } from '@mui/material';
 import { CreateUserData } from '../types/tenant';
 
@@ -28,17 +32,17 @@ const AddUserDialog: React.FC<AddUserDialogProps> = ({
   onSubmit
 }) => {
   const [formData, setFormData] = useState<Omit<CreateUserData, 'tenantId'>>({
-    name: '',
-    email: ''
+    emailAddress: '',
+    role: 1 // Default to User role
   });
   
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleInputChange = (field: keyof Omit<CreateUserData, 'tenantId'>) => (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement> | any
   ) => {
-    const value = event.target.value;
+    const value = field === 'role' ? parseInt(event.target.value) : event.target.value;
     setFormData(prev => ({
       ...prev,
       [field]: value
@@ -56,8 +60,8 @@ const AddUserDialog: React.FC<AddUserDialogProps> = ({
         tenantId
       });
       setFormData({
-        name: '',
-        email: ''
+        emailAddress: '',
+        role: 1
       });
       onClose();
     } catch (err) {
@@ -71,14 +75,14 @@ const AddUserDialog: React.FC<AddUserDialogProps> = ({
     if (!loading) {
       setError(null);
       setFormData({
-        name: '',
-        email: ''
+        emailAddress: '',
+        role: 1
       });
       onClose();
     }
   };
 
-  const isFormValid = formData.name.trim().length > 0 && formData.email.trim().length > 0;
+  const isFormValid = formData.emailAddress.trim().length > 0;
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
@@ -94,22 +98,26 @@ const AddUserDialog: React.FC<AddUserDialogProps> = ({
           <Stack spacing={2} sx={{ mt: 1 }}>
             <TextField
               fullWidth
-              label="User Name"
-              value={formData.name}
-              onChange={handleInputChange('name')}
+              label="Email Address"
+              type="email"
+              value={formData.emailAddress}
+              onChange={handleInputChange('emailAddress')}
               required
               disabled={loading}
             />
             
-            <TextField
-              fullWidth
-              label="Email"
-              type="email"
-              value={formData.email}
-              onChange={handleInputChange('email')}
-              required
-              disabled={loading}
-            />
+            <FormControl fullWidth required>
+              <InputLabel>Role</InputLabel>
+              <Select
+                value={formData.role}
+                label="Role"
+                onChange={handleInputChange('role')}
+                disabled={loading}
+              >
+                <MenuItem value={1}>User</MenuItem>
+                <MenuItem value={2}>Admin</MenuItem>
+              </Select>
+            </FormControl>
           </Stack>
         </DialogContent>
         

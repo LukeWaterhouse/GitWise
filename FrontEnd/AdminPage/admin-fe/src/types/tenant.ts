@@ -9,13 +9,14 @@ export interface CreateTenantData {
 
 export interface User {
   id: string;
-  name: string;
-  email: string;
+  emailAddress: string;
   tenantId: string;
+  role: 1 | 2; // 1 = User, 2 = Admin
+  externalID?: string;
 }
 
 export interface CreateUserData {
-  name: string;
-  email: string;
+  emailAddress: string;
   tenantId: string;
+  role: 1 | 2;
 }

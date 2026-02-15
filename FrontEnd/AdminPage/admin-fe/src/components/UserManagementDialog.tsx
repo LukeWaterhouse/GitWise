@@ -5,14 +5,17 @@ import {
   DialogContent,
   DialogActions,
   Button,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
   IconButton,
   Typography,
   Box,
-  Fab,
+  Chip,
   CircularProgress,
   Alert,
   Divider
@@ -147,26 +150,62 @@ const UserManagementDialog: React.FC<UserManagementDialogProps> = ({
                   </Typography>
                 </Box>
               ) : (
-                <List>
-                  {users.map((user) => (
-                    <ListItem key={user.id} divider>
-                      <ListItemText
-                        primary={user.name}
-                        secondary={user.email}
-                      />
-                      <ListItemSecondaryAction>
-                        <IconButton
-                          edge="end"
-                          aria-label="delete"
-                          onClick={() => handleDeleteUser(user.id)}
-                          color="error"
-                        >
-                          <DeleteIcon />
-                        </IconButton>
-                      </ListItemSecondaryAction>
-                    </ListItem>
-                  ))}
-                </List>
+                <TableContainer component={Paper} variant="outlined">
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Email Address</TableCell>
+                        <TableCell>Role</TableCell>
+                        <TableCell>EntraID</TableCell>
+                        <TableCell align="right">Actions</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {users.map((user) => (
+                        <TableRow key={user.id} hover>
+                          <TableCell>
+                            <Typography variant="body2">
+                              {user.emailAddress}
+                            </Typography>
+                          </TableCell>
+                          
+                          <TableCell>
+                            <Chip
+                              label={user.role === 1 ? 'User' : 'Admin'}
+                              color={user.role === 1 ? 'default' : 'primary'}
+                              size="small"
+                              variant="outlined"
+                            />
+                          </TableCell>
+                          
+                          <TableCell>
+                            <Typography 
+                              variant="body2" 
+                              sx={{ 
+                                fontFamily: 'monospace', 
+                                fontSize: '0.75rem',
+                                color: user.externalID ? 'text.primary' : 'text.secondary'
+                              }}
+                            >
+                              {user.externalID || 'Not set'}
+                            </Typography>
+                          </TableCell>
+                          
+                          <TableCell align="right">
+                            <IconButton
+                              aria-label="delete"
+                              onClick={() => handleDeleteUser(user.id)}
+                              color="error"
+                              size="small"
+                            >
+                              <DeleteIcon />
+                            </IconButton>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
               )}
             </>
           )}
