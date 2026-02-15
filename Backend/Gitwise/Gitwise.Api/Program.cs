@@ -12,6 +12,21 @@ services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
+// Add CORS policy - origins configured per environment in appsettings
+services.AddCors(options =>
+{
+    options.AddPolicy("DefaultCorsPolicy", policy =>
+    {
+        var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? Array.Empty<string>();
+        
+        policy
+            .WithOrigins(allowedOrigins)
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials();
+    });
+});
+
 services
     .AddApiServices();
 
@@ -26,6 +41,9 @@ var app = builder.Build();
 # region Middleware
 
 app.UseMiddleware<ExceptionMiddleware>();
+
+// Enable CORS
+app.UseCors("DefaultCorsPolicy");
 
 # endregion
 

@@ -1,5 +1,6 @@
 using ControlPlane.Application.Interfaces.Application;
 using Gitwise.Api.Mapping;
+using Gitwise.Api.Models.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gitwise.Api.Controllers;
@@ -9,9 +10,9 @@ namespace Gitwise.Api.Controllers;
 public class TenantController(ITenantService tenantService) : ControllerBase
 {
     [HttpPost]
-    public async Task<IActionResult> CreateTenantAsync(string tenantName, CancellationToken ct)
+    public async Task<IActionResult> CreateTenantAsync([FromBody] CreateTenantRequestDto request, CancellationToken ct)
     {
-        var tenant = await tenantService.CreateTenantAsync(tenantName, ct);
+        var tenant = await tenantService.CreateTenantAsync(request.TenantName, ct);
         return Ok(tenant.FromDomain());
     }
 

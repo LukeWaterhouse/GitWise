@@ -31,9 +31,33 @@ export const tenantService = {
     }
   },
 
-  // Placeholder functions - not implemented yet
+  // Create a new tenant
   createTenant: async (tenantData: CreateTenantData): Promise<Tenant> => {
-    throw new Error('Create tenant functionality not implemented yet');
+    try {
+      const response = await fetch(buildApiUrl(API_CONFIG.ENDPOINTS.TENANTS), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          tenantName: tenantData.name,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to create tenant: ${response.status} ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      
+      return {
+        id: data.id,
+        name: data.name || tenantData.name,
+      };
+    } catch (error) {
+      console.error('Error creating tenant:', error);
+      throw error;
+    }
   },
 
   updateTenant: async (id: string, tenantData: Partial<Tenant>): Promise<Tenant> => {
