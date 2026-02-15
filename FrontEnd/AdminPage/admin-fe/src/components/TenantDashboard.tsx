@@ -18,11 +18,14 @@ import { Tenant, CreateTenantData } from '../types/tenant';
 import { tenantService } from '../services/tenantService';
 import TenantsTable from './TenantsTable';
 import AddTenantDialog from './AddTenantDialog';
+import UserManagementDialog from './UserManagementDialog';
 
 const TenantDashboard: React.FC = () => {
   const [tenants, setTenants] = useState<Tenant[]>([]);
   const [loading, setLoading] = useState(true);
   const [addDialogOpen, setAddDialogOpen] = useState(false);
+  const [userManagementDialogOpen, setUserManagementDialogOpen] = useState(false);
+  const [selectedTenantForUsers, setSelectedTenantForUsers] = useState<Tenant | null>(null);
   const [snackbar, setSnackbar] = useState<{
     open: boolean;
     message: string;
@@ -77,6 +80,15 @@ const TenantDashboard: React.FC = () => {
   const handleStatusChange = async (tenantId: string) => {
     // Placeholder for future edit functionality
     showSnackbar('Edit functionality not implemented yet', 'info');
+  };
+
+  const handleManageUsers = (tenant: Tenant) => {
+    setSelectedTenantForUsers(tenant);
+    setUserManagementDialogOpen(true);
+  };
+
+  const handleCopyTenantId = (id: string, tenantName: string) => {
+    showSnackbar(`Tenant ID for "${tenantName}" copied to clipboard!`, 'success');
   };
 
   const handleDeleteTenant = async (tenantId: string) => {
@@ -155,6 +167,8 @@ const TenantDashboard: React.FC = () => {
           tenants={tenants}
           loading={loading}
           onEdit={handleStatusChange}
+          onManageUsers={handleManageUsers}
+          onCopyId={handleCopyTenantId}
           onDelete={handleDeleteTenant}
         />
       </Paper>
@@ -164,6 +178,16 @@ const TenantDashboard: React.FC = () => {
         open={addDialogOpen}
         onClose={() => setAddDialogOpen(false)}
         onSubmit={handleCreateTenant}
+      />
+
+      {/* User Management Dialog */}
+      <UserManagementDialog
+        open={userManagementDialogOpen}
+        tenant={selectedTenantForUsers}
+        onClose={() => {
+          setUserManagementDialogOpen(false);
+          setSelectedTenantForUsers(null);
+        }}
       />
 
       {/* Floating Action Button for Mobile */}

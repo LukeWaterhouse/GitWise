@@ -22,7 +22,9 @@ import {
 } from '@mui/material';
 import {
   MoreVert as MoreVertIcon,
-  Business as BusinessIcon
+  Business as BusinessIcon,
+  People as PeopleIcon,
+  ContentCopy as ContentCopyIcon
 } from '@mui/icons-material';
 import { Tenant } from '../types/tenant';
 
@@ -30,14 +32,18 @@ interface TenantsTableProps {
   tenants: Tenant[];
   loading?: boolean;
   onEdit?: (tenantId: string) => void;
+  onManageUsers: (tenant: Tenant) => void;
   onDelete: (tenantId: string) => void;
+  onCopyId?: (id: string, tenantName: string) => void;
 }
 
 const TenantsTable: React.FC<TenantsTableProps> = ({
   tenants,
   loading = false,
   onEdit,
-  onDelete
+  onManageUsers,
+  onDelete,
+  onCopyId
 }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedTenant, setSelectedTenant] = useState<Tenant | null>(null);
@@ -52,6 +58,17 @@ const TenantsTable: React.FC<TenantsTableProps> = ({
   const handleMenuClose = () => {
     setAnchorEl(null);
     setSelectedTenant(null);
+  };
+
+  const handleCopyId = async (id: string, tenantName: string) => {
+    try {
+      await navigator.clipboard.writeText(id);
+      if (onCopyId) {
+        onCopyId(id, tenantName);
+      }
+    } catch (err) {
+      console.error('Failed to copy tenant ID:', err);
+    }
   };
 
   const handleEditClick = () => {
@@ -109,6 +126,8 @@ const TenantsTable: React.FC<TenantsTableProps> = ({
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>
+              <TableCell>Tenant ID</TableCell>
+              <TableCell>Users</TableCell>
               <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -119,6 +138,45 @@ const TenantsTable: React.FC<TenantsTableProps> = ({
                   <Typography variant="body2">
                     {tenant.name}
                   </Typography>
+                </TableCell>
+                
+                <TableCell>
+                  <Box display="flex" alignItems="center" gap={1}>
+                    <Typography 
+                      variant="body2" 
+                      sx={{ 
+                        fontFamily: 'monospace', 
+                        fontSize: '0.75rem',
+                        color: 'text.secondary',
+                        maxWidth: '200px',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis'
+                      }}
+                    >
+                      {tenant.id}
+                    </Typography>
+                    <Tooltip title="Copy Tenant ID">
+                      <IconButton
+                        size="small"
+                        onClick={() => handleCopyId(tenant.id, tenant.name)}
+                        sx={{ ml: 0.5 }}
+                      >
+                        <ContentCopyIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
+                </TableCell>
+                
+                <TableCell>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    startIcon={<PeopleIcon />}
+                    onClick={() => onManageUsers(tenant)}
+                    sx={{ textTransform: 'none' }}
+                  >
+                    Manage Users
+                  </Button>
                 </TableCell>
                 
                 <TableCell align="right">

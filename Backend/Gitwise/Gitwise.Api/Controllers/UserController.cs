@@ -1,6 +1,7 @@
 using ControlPlane.Application.Interfaces.Application;
 using ControlPlane.Domain.Models.Enums;
 using Gitwise.Api.Mapping;
+using Gitwise.Api.Models.Requests;
 using Gitwise.Api.Models.Requests.Enums;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,10 +12,9 @@ namespace Gitwise.Api.Controllers;
 public class UserController(IUserService userService) : ControllerBase
 {
     [HttpPost]
-    public async Task<IActionResult> CreateUserAsync(string emailAddress, Guid tenantId, RoleDto role,
-        CancellationToken ct)
+    public async Task<IActionResult> CreateUserAsync([FromBody] CreateUserRequestDto request, CancellationToken ct)
     {
-        var user = await userService.CreateUserAsync(emailAddress, tenantId, (Role)role, ct);
+        var user = await userService.CreateUserAsync(request.EmailAddress, request.TenantId, (Role)request.Role, ct);
 
         return Ok(user.FromDomain());
     }
